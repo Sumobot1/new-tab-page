@@ -1,0 +1,39 @@
+body {
+	height:100vh;
+    background: url('/img/001.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin:0;
+    padding:0;
+}
+
+.greetingWrapper{
+	height:100%;
+    display: flex;           /* establish flex container */
+    flex-direction: column;  /* make main axis vertical */
+    justify-content: center; /* center items vertically, in this case */
+    align-items: center;     /* center items horizontally, in this case */
+}
+
+.mainGreeting{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+	font-size: 100px;
+}
+
+.mainTime{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+	font-size: 200px;
+}
+
+.mainQuote{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+	font-size: 33px;
+}
