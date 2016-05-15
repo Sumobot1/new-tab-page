@@ -8,10 +8,10 @@ body {
 
 .greetingWrapper{
 	height:100%;
-    display: flex;           /* establish flex container */
-    flex-direction: column;  /* make main axis vertical */
-    justify-content: center; /* center items vertically, in this case */
-    align-items: center;     /* center items horizontally, in this case */
+    display: flex;           
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;     
 }
 
 .mainGreeting{
@@ -36,4 +36,22 @@ body {
 	align-items: center;
 	color: white;
 	font-size: 33px;
+}
+
+.recentlyVisited{
+	display: flex;
+	position: absolute;
+	height:120px;
+	width:100%;
+	bottom:10px;
+	justify-content: center;
+}
+
+.toDoList{
+	display: flex;
+	position: absolute;
+	height:300px;
+	width:200px;
+	top:10px;
+	right:10px;
 }
