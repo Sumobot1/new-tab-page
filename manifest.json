@@ -5,12 +5,18 @@
   "description": "This extension replaces the default new tab page with a custom one",
   "version": "1.0",
 
+  "background": { "scripts": [
+            "background.js"
+  ]},
+
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
   },
   "permissions": [
-    "activeTab"
+    "activeTab",
+      "tabs",
+  "unlimitedStorage"
   ],
     "chrome_url_overrides" : {
     "newtab": "newtab.html"
