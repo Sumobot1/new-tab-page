@@ -6,3 +6,6 @@ chrome.runtime.onMessage.addListener(
     if (request.greeting == "hello")
       sendResponse({farewell: "goodbye"});
   });
+chrome.browserAction.onClicked.addListener(function() {
+    chrome.tabs.create({'url': "chrome://newtab"});
+});

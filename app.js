@@ -4,12 +4,12 @@
 // except for 'app' ones, which are in a sibling
 // directory.
 requirejs.config({
-    baseUrl: 'lib',
+    baseUrl: 'js/lib',
     paths: {
-        app: '../scripts'
+        app: '../js'
     }
 });
 
 // Start loading the main app file. Put all of
 // your application logic in there.
-requirejs(['scripts/main']);
+requirejs(['js/main']);
