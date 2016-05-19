@@ -6,7 +6,7 @@
   "version": "1.0",
 
   "background": { "scripts": [
-            "js/background/background.js"
+            "js/background/background.js", "js/background/chromehistory.js"
   ]},
 
   "browser_action": {
@@ -16,7 +16,11 @@
   "permissions": [
     "activeTab",
       "tabs",
-  "unlimitedStorage"
+  "unlimitedStorage",
+  "background",
+  "history",
+  "storage",
+  "topSites"
   ],
     "chrome_url_overrides" : {
     "newtab": "newtab.html"

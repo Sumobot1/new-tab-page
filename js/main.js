@@ -17,6 +17,7 @@ define(function(require) {
         chrome.runtime.sendMessage({ greeting: "hello" }, function(response) {
             console.log(response.farewell);
         });
+        chrome.runtime.sendMessage({requesttype: "ready"}, function(response){console.log("gotresponse")});
     });
 
     //messages.printstuff(messages.getHello());
