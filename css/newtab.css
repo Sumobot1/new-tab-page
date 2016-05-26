@@ -24,7 +24,7 @@ body {
 
 .mainTime{
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 	color: white;
 	font-size: 200px;
@@ -59,12 +59,12 @@ body {
 }
 
 .recentlyVisitedItem{
-	width: 19%;
+	width: 18%;
 }
 
 .partOfDay{
+	display: flex;
 	font-size: 20px;
-	position: absolute;
-	padding-left: 480px;
-	padding-bottom: 10px;
+	padding-left: 40px;
+	padding-bottom: 0px;
 }
