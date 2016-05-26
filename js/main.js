@@ -21,4 +21,8 @@ define(function(require) {
     });
 
     //messages.printstuff(messages.getHello());
+
+    chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+        console.log("gotMessage: ", request);
+    });
 });

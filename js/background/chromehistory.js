@@ -18,7 +18,9 @@ chromehistory.updateHistory = function(results){
 			results[i].title = this.fixTitle(results[i]);
 		}
 	}
-	return results;
+	//return results;
+	console.log("Final Results: ", results);
+	background.sendMessage({requesttype: "updatedHistory", history: results});
 };
 
 chromehistory.isNumeric = function (value) {
@@ -32,7 +34,7 @@ chromehistory.fixTitle = function(site){
 	console.log("sURL1: ", sURL);
 	//var arWebString = ["http:\/\/", "https:\/\/", ".com", ".org", ".ca", ".io", ".xyz", "www."];
 	//var arCommonURLSeparators = ["\%20", "url\?", "\&q\=", "\&src\=", "\&esrc\=", "\&source\=", "\%2F", "\%3A","\&usg\=", "\&url\=", "\&rct\=", "\&cd\=", "\&cad\="];
-	var arCommonLeftOver = ["http", "https", "en", "ca", "utf", "rja"];
+	var arCommonLeftOver = ["http", "https", "en", "ca", "utf", "rja", "rlz", "espv"];
 	var arCommonTwoLetter = ["of", "to", "in", "it", "is", "be", "as", "at", "so", "we", "he", "by", "or", "on", "do", "if", "me", "my", "up", "an", "go", "no", "us", "am"];
 	//var arCommonThreeLetter = ["the", "and", "for", "are", "but", "not", "you", "all", "any", "can", "had", "her", "was", "one", "our", "out", "day", "get", "has", "him", "his", "how", "man", "new", "now", "old", "see", "two", "way", "who", "boy", "did", "its", "let", "put", "say", "she", "too", "use"];
 	sURL = sURL.replace(/http:\/\/|https:\/\/|.com|.org|.ca|.io|.io|.xyz|www./g, "");
@@ -81,7 +83,11 @@ chromehistory.fixTitle = function(site){
 	}
 	console.log("sSite: ", sSite);
 	console.log("sURL: ", sURL);
-
+	var sFin = sSite+" - ";
+	for (var i = 0;i<sURL.length;i++){
+		sFin+=sURL[i]+" ";
+	}
+	return sFin;
 };
 
 chrome.history.onVisited.addListener(function(){chromehistory.getRecentlyVisited(5)});
