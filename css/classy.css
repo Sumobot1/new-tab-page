@@ -13,3 +13,14 @@
 	/*position: absolute;*/
 	
 }
+
+.classyAnchor{
+	text-decoration: none;
+    color: white;
+    font-size: 18px;
+    text-shadow: none;
+}
+
+.classyAnchor:hover{
+	text-shadow: 0 0 0.2em rgba(253, 253, 253, 0.77), 0 0 0.3em rgba(253, 253, 253, 0.77);
+}

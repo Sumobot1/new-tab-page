@@ -3,6 +3,8 @@ define(function(require) {
     // with a relative require call,
     // like:
     var messages = require('./content/messages');
+    var mainTime = require('./content/mainTime');
+    var recentlyVisitedSites = require('./content/recentlyVisitedSites');
 
     // Load library/vendor modules using
     // full IDs, like:
@@ -24,5 +26,10 @@ define(function(require) {
 
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         console.log("gotMessage: ", request);
+        if (request.requesttype === "updatedTime"){
+            mainTime.updateTime(request.newTime);
+        }else if (request.requesttype === "updatedHistory"){
+            recentlyVisitedSites.updateSites(request.history);
+        }
     });
 });

@@ -20,7 +20,7 @@ timeanddate.updateTime = function () {
             v+="AM"
         }
         console.log("Current Time: ", v);
-        background.sendMessage({requesttype: "updatedTime", time: v});
+        background.sendMessage({requesttype: "updatedTime", newTime: v});
         var self = this;
         setTimeout(function(){console.log("Updating Time ");self.updateTime()},1000);
     };
