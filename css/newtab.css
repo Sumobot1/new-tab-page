@@ -61,3 +61,10 @@ body {
 .recentlyVisitedItem{
 	width: 19%;
 }
+
+.partOfDay{
+	font-size: 20px;
+	position: absolute;
+	padding-left: 480px;
+	padding-bottom: 10px;
+}

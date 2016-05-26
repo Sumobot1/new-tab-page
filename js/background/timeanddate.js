@@ -13,14 +13,19 @@ timeanddate.updateTime = function () {
 /*        if (seconds < 10){
             seconds = "0" + seconds;
         }*/
-        var v = hours + ":" + minutes;  /* + ":" + seconds + " "*/
+        var partOfDay;
         if(hours > 11){
-            v+="PM";
+            partOfDay = "PM";
+            hours -=12;
         } else {
-            v+="AM"
+            partOfDay = "AM"
+            if (hours === 0){
+                hours = 12;
+            }
         }
+        var v = hours + ":" + minutes;  /* + ":" + seconds + " "*/
         console.log("Current Time: ", v);
-        background.sendMessage({requesttype: "updatedTime", newTime: v});
+        background.sendMessage({requesttype: "updatedTime", newTime: v, newPartOfDay: partOfDay});
         var self = this;
         setTimeout(function(){console.log("Updating Time ");self.updateTime()},1000);
     };

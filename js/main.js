@@ -19,15 +19,15 @@ define(function(require) {
         chrome.runtime.sendMessage({ greeting: "hello" }, function(response) {
             console.log(response.farewell);
         });
-        chrome.runtime.sendMessage({requesttype: "ready"}, function(response){console.log("gotresponse")});
+        
     });
-
+    chrome.runtime.sendMessage({requesttype: "ready"}, function(response){console.log("gotresponse")});
     //messages.printstuff(messages.getHello());
 
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         console.log("gotMessage: ", request);
         if (request.requesttype === "updatedTime"){
-            mainTime.updateTime(request.newTime);
+            mainTime.updateTime(request.newTime, request.newPartOfDay);
         }else if (request.requesttype === "updatedHistory"){
             recentlyVisitedSites.updateSites(request.history);
         }
