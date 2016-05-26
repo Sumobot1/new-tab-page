@@ -9,8 +9,11 @@ chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
         if (request.requesttype = "ready"){
         	console.log("here");
         	var recent = chromehistory.getRecentlyVisited(5);
+            console.log("Recent: ", recent);
+        	timeanddate.updateTime();
         }
         if (request.greeting == "hello")
             sendResponse({ farewell: "goodbye" });
+        //sendResponse({ farewell: "goodbye" });
     });
 
