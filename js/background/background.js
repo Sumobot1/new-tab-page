@@ -16,7 +16,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     }
     if (request.greeting == "hello")
         sendResponse({ farewell: "goodbye" });
-    //sendResponse({ farewell: "goodbye" });
 });
 
 
@@ -25,7 +24,7 @@ var background = {
 };
 
 background.sendMessage = function(message) {
-    chrome.tabs.query({}, function(tabs) {      /*url:"*kbmnnahabbcbiekkdfjkldccogjmplhi*"*/
+    chrome.tabs.query({}, function(tabs) {      
         for (var i = 0; i < tabs.length; ++i) {
             chrome.tabs.sendMessage(tabs[i].id, message, function(){});
         }

@@ -12,12 +12,3 @@ define(function () {
     };
 });
 
-/*define(function () {
-    return {
-        printstuff: function(msg){
-        	console.log(msg);
-        }
-    };
-});
-*/
-

@@ -1,6 +1,5 @@
 .classyBox{
 	display: flex;
-	/*justify-content: center;*/
 	-webkit-backdrop-filter: blur(5px);
 	background-color:rgba(16,16,16,0.7);
 	color: rgba(253, 253, 253, 0.77);
@@ -10,7 +9,6 @@
 .classyContent{
 	height:100%;
 	width:50%;
-	/*position: absolute;*/
 	
 }
 
