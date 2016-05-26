@@ -11,9 +11,9 @@ define(function(require) {
     console.log(hello);
     messages.printstuff(hello);
     messages.printstuff(messages.getHello());
-    document.body.style.background = "red";
-    document.getElementById("supportUs").addEventListener("click", function() {
-        document.getElementById("supportUs").style.background = "green";
+    //document.body.style.background = "red";
+    document.getElementById("toDoList").addEventListener("click", function() {
+        document.getElementById("toDoList").style.background = "green";
         chrome.runtime.sendMessage({ greeting: "hello" }, function(response) {
             console.log(response.farewell);
         });
