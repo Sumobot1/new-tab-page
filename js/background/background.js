@@ -9,9 +9,9 @@ var newTabs = [];
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
     if (request.requesttype = "ready") {
-        console.log("here");
-        var recent = chromehistory.getRecentlyVisited(5);
-        console.log("Recent: ", recent);
+        //console.log("here");
+        /*var recent = */chromehistory.getRecentlyVisited(5);
+        //console.log("Recent: ", recent);
         timeanddate.updateTime();
     }
     if (request.greeting == "hello")

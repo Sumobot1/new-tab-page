@@ -1,6 +1,6 @@
 define(function () {   
         function updateTime(currentTime, currentPartOfDay) {
-            console.log("mainTime.updateTime: ", currentTime);
+            //console.log("mainTime.updateTime: ", currentTime);
             document.getElementById("mainTime").innerHTML = currentTime;
             var partOfDay = document.createElement("div");
             partOfDay.innerHTML = currentPartOfDay;

@@ -1,5 +1,4 @@
-define(function () {
-   
+define(function () {  
         function getHello() {
             return 'Hello World';
         };
