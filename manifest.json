@@ -4,23 +4,32 @@
   "name": "New Tab Page",
   "description": "This extension replaces the default new tab page with a custom one",
   "version": "1.0",
-
+  "content_security_policy":"script-src 'self' https://apis.google.com; object-src 'self'",
   "background": { "scripts": [
-            "js/background/background.js", "js/background/chromehistory.js", "js/background/timeanddate.js"
+            "js/background/background.js", "js/background/chromehistory.js", "js/background/timeanddate.js", "js/background/googleCalender.js"
   ]},
 
   "browser_action": {
     "default_icon": "icon.png"
 
   },
+  "oauth2": {
+    "client_id": "1058380813750-ceinta1vu53ntu1m4448unrsjg1cm848.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/calender"
+    ]
+  },
   "permissions": [
+  "identity",
     "activeTab",
       "tabs",
   "unlimitedStorage",
   "background",
   "history",
   "storage",
-  "topSites"
+  "topSites",
+ "http://localhost/",
+ "https://apis.google.com/*"
   ],
     "chrome_url_overrides" : {
     "newtab": "newtab.html"

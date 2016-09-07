@@ -6,26 +6,49 @@
     <title>Do Stuff</title>
     <link rel="stylesheet" type="text/css" href="css/newtab.css">
     <link rel="stylesheet" type="text/css" href="css/classy.css">
+    <script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>    <!--?onload=checkAuth-->
     <script data-main="js/main" src="js/lib/require.js"></script>
-    
 </head>
 
 <body>
     <div id="greetingWrapper" class="greetingWrapper">
         <div id="mainTime" class="mainTime"></div>
-        <!-- <div id="partOfDay" class="partOfDay"></div> -->
         <div id="mainGreeting" class="mainGreeting">Hi Michael</div>
         <div id="mainQuote" class="mainQuote">Le Quote Shall Goeth Here</div>
     </div>
     <div id="recentlyVisited" class="recentlyVisited">
-        <!-- <div id="recentlyVisitedBackground" class="classyBackground"></div> -->
-        <!-- <div id="recentlyVisitedContent" class="classyBox classyContent">Recently Visited Websites Here</div> -->
     </div>
     <div id="recentEmails" class="recentEmails"></div>
-    <div id="toDoList" class="toDoList classyBox">To Do List Here</div>
+    <div id="toDoList" class="toDoList classyBox">
+        <div id="authorize-div">
+            <span>Authorize access to Google Calendar API</span>
+            <button id="authorize-button">
+                Authorize
+            </button>
+        </div>
+        <pre id="output"></pre>
+    </div>
     <div id="settingsGear" class="settingsGear"></div>
     <div id="supportUs" class="supportUs"></div>
-    <!--<script src="js/scripts.js"></script>-->
 </body>
+<!--   <head>
+    <script type="text/javascript">
+      // Your Client ID can be retrieved from your project in the Google
+      // Developer Console, https://console.developers.google.com
+
+
+    </script>
+    <script src="https://apis.google.com/js/client.js?onload=checkAuth">
+    </script>
+  </head>
+  <body>
+    <div id="authorize-div" style="display: none">
+      <span>Authorize access to Google Calendar API</span>
+      <button id="authorize-button" onclick="handleAuthClick(event)">
+        Authorize
+      </button>
+    </div>
+    <pre id="output"></pre>
+  </body> -->
 
 </html>

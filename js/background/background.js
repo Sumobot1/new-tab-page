@@ -8,14 +8,23 @@ var newTabs = [];
 //Chrome message pipe.  Receives messages from content script
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
-    if (request.requesttype = "ready") {
+    if (request.requesttype === "ready") {
         //console.log("here");
         /*var recent = */chromehistory.getRecentlyVisited(5);
         //console.log("Recent: ", recent);
         timeanddate.updateTime();
+        //gapi.load('auth2', function(){});
+       // googleCalender.checkAuth();
     }
-    if (request.greeting == "hello")
-        sendResponse({ farewell: "goodbye" });
+    else if (request.requesttype === "googleCalender"){
+        //googleCalender.handleAuthClick();
+        chrome.identity.getAuthToken({ 'interactive': false }, function(token) {
+  // Use the token.
+  console.log("token: ", token);
+});
+    }
+    if (request.greeting === "hello")
+        sendResponse({ requesttype: "no", farewell: "goodbye" });
 });
 
 
