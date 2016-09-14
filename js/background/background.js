@@ -4,18 +4,23 @@ chrome.browserAction.onClicked.addListener(function() {
 });
 
 var newTabs = [];
+var theJSON;
 
 //Chrome message pipe.  Receives messages from content script
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
-    if (request.requesttype = "ready") {
-        //console.log("here");
-        /*var recent = */chromehistory.getRecentlyVisited(5);
-        //console.log("Recent: ", recent);
-        timeanddate.updateTime();
+    if (request.requesttype === "ready") {
+        loadJSON(function(response){
+            theJSON = JSON.parse(response);
+            chromehistory.getRecentlyVisited(5);
+            timeanddate.updateTime();
+            openweather.getCurrentWeather(theJSON);
+        });
+
     }
-    if (request.greeting == "hello")
+    if (request.greeting === "hello")
         sendResponse({ farewell: "goodbye" });
+
 });
 
 
@@ -30,3 +35,18 @@ background.sendMessage = function(message) {
         }
     });
 };
+
+
+ function loadJSON(callback) {   
+
+    var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'assets.json', true); 
+    xobj.onreadystatechange = function () {
+          if (xobj.readyState == 4 && xobj.status == "200") {
+            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+            callback(xobj.responseText);
+          }
+    };
+    xobj.send(null);  
+ }

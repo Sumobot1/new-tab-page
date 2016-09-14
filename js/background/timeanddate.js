@@ -10,11 +10,15 @@ timeanddate.updateTime = function () {
             minutes = "0" + minutes;
         }
         var partOfDay;
-        if(hours > 11){
-            partOfDay = "PM";
+        if(hours > 11){ 
+            if (hours < 18){
+                partOfDay = "afternoon";
+            }else{
+                partOfDay = "evening"
+            }
             hours -=12;
         } else {
-            partOfDay = "AM"
+            partOfDay = "morning"
             if (hours === 0){
                 hours = 12;
             }

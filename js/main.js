@@ -4,6 +4,7 @@ define(function(require) {
     // like:
     var messages = require('./content/messages');
     var mainTime = require('./content/mainTime');
+    //var currentLocation = require('./content/currentLocation');
     var recentlyVisitedSites = require('./content/recentlyVisitedSites');
 
     // Load library/vendor modules using
@@ -12,6 +13,7 @@ define(function(require) {
     //console.log(hello);
     messages.printstuff(hello);
     messages.printstuff(messages.getHello());
+   // currentLocation.getLocation();
 /*    document.getElementById("toDoList").addEventListener("click", function() {
         document.getElementById("toDoList").style.background = "green";
         chrome.runtime.sendMessage({ greeting: "hello" }, function(response) {
@@ -23,11 +25,17 @@ define(function(require) {
     chrome.runtime.onMessage.addListener(gotResponse);
 
     function gotResponse(request, sender, sendResponse){
-        console.log("PENIS penis PENIS penis   ", request);
-                if (request.requesttype === "updatedTime"){
+        console.log("Response to Request", request);
+        if (request === undefined){
+            return;
+        }
+        if (request.requesttype === "updatedTime"){
             mainTime.updateTime(request.newTime, request.newPartOfDay);
         }else if (request.requesttype === "updatedHistory"){
             recentlyVisitedSites.updateSites(request.history);
+        }else if (request.requesttype === "updatedWeather"){
+            console.log("gotWeather: ");
+            console.log(request.currentWeather);
         }
     }
 });

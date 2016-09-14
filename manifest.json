@@ -6,7 +6,7 @@
   "version": "1.0",
 
   "background": { "scripts": [
-            "js/background/background.js", "js/background/chromehistory.js", "js/background/timeanddate.js"
+            "js/background/background.js", "js/background/chromehistory.js", "js/background/timeanddate.js", "js/background/openweather.js"
   ]},
 
   "browser_action": {
@@ -20,7 +20,8 @@
   "background",
   "history",
   "storage",
-  "topSites"
+  "topSites",
+  "geolocation"
   ],
     "chrome_url_overrides" : {
     "newtab": "newtab.html"
