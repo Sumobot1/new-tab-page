@@ -1,3 +1,11 @@
+* {
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
 body {
 	height:100vh;
     background: url('/img/001.jpg') no-repeat center center fixed;
