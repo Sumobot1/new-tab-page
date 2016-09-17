@@ -97,3 +97,12 @@ body {
 	text-transform: lowercase;
 	text-align: center;
 }
+
+.socialIcon{
+	color: white;
+    opacity: 0.7;
+}
+
+.socialIcon:hover{
+	opacity: 1;
+}
