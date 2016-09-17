@@ -1,10 +1,11 @@
 var timeanddate = {
-
+    'timeInHours':-1
 };
 
 timeanddate.updateTime = function () {
         var currentTime = new Date();
         var hours = currentTime.getHours();
+        this.timeInHours = hours;
         var minutes = currentTime.getMinutes();
         if (minutes < 10){
             minutes = "0" + minutes;

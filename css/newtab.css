@@ -56,7 +56,7 @@ body {
 	height:300px;
 	width:200px;
 	top:10px;
-	right:10px;
+	left:10px;
 }
 
 .recentlyVisitedItem{
@@ -68,4 +68,24 @@ body {
 	font-size: 20px;
 	padding-left: 40px;
 	padding-bottom: 0px;
+}
+
+#currentWeather{
+	position: absolute;
+	max-height:300px;
+	max-width:200px;
+	top:17px;
+	right:20px;	
+}
+
+.weatherIcon{
+	max-width: 100%;
+	max-height: 6vh;
+	object-fit: contain;
+}
+
+.weatherText{
+	color: #fff;
+	text-transform: lowercase;
+	text-align: center;
 }

@@ -58,5 +58,9 @@ openweather.httpGetAsync = function(theUrl, callback){
 }
 
 openweather.sendResponse = function(theWeather){
-	background.sendMessage({requesttype: "updatedWeather", currentWeather: theWeather});
+    console.log("TIME IN HOURS: " + timeanddate.timeInHours);
+    if (timeanddate.timeInHours < 6 || timeanddate.timeInHours > 18)
+	   background.sendMessage({requesttype: "updatedWeather", currentWeather: theWeather, dayOrNight: 'night'});
+    else
+        background.sendMessage({requesttype: "updatedWeather", currentWeather: theWeather, dayOrNight: 'day'});
 }

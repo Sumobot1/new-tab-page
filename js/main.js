@@ -4,7 +4,7 @@ define(function(require) {
     // like:
     var messages = require('./content/messages');
     var mainTime = require('./content/mainTime');
-    //var currentLocation = require('./content/currentLocation');
+    var currentWeather = require('./content/currentWeather');
     var recentlyVisitedSites = require('./content/recentlyVisitedSites');
 
     // Load library/vendor modules using
@@ -34,8 +34,7 @@ define(function(require) {
         }else if (request.requesttype === "updatedHistory"){
             recentlyVisitedSites.updateSites(request.history);
         }else if (request.requesttype === "updatedWeather"){
-            console.log("gotWeather: ");
-            console.log(request.currentWeather);
+            currentWeather.updateWeather(request.currentWeather, request.dayOrNight);
         }
     }
 });
