@@ -7,6 +7,7 @@ define(function(require) {
     var currentWeather = require('./content/currentWeather');
     var recentlyVisitedSites = require('./content/recentlyVisitedSites');
     var dailyMessage = require('./content/dailyMessage');
+    var getQuote = require('./content/dailyMessage');
 
     // Load library/vendor modules using
     // full IDs, like:
@@ -14,7 +15,7 @@ define(function(require) {
     //console.log(hello);
     messages.printstuff(hello);
     messages.printstuff(messages.getHello());
-    dailyMessage.getQuote();
+   // dailyMessage.getQuote();
    // currentLocation.getLocation();
 /*    document.getElementById("toDoList").addEventListener("click", function() {
         document.getElementById("toDoList").style.background = "green";
@@ -38,6 +39,8 @@ define(function(require) {
             recentlyVisitedSites.updateSites(request.history);
         }else if (request.requesttype === "updatedWeather"){
             currentWeather.updateWeather(request.currentWeather, request.dayOrNight);
+        }else if (request.requesttype === "gotQuote"){
+            getQuote.showQuote(request.quote);
         }
     }
 });

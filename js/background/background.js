@@ -15,6 +15,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             chromehistory.getRecentlyVisited(5);
             timeanddate.updateTime();
             openweather.getCurrentWeather(theJSON);
+            quote.getQuote();
         });
 
     }
