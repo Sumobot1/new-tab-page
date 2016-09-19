@@ -6,6 +6,7 @@ define(function(require) {
     var mainTime = require('./content/mainTime');
     var currentWeather = require('./content/currentWeather');
     var recentlyVisitedSites = require('./content/recentlyVisitedSites');
+    var dailyMessage = require('./content/dailyMessage');
 
     // Load library/vendor modules using
     // full IDs, like:
@@ -13,6 +14,7 @@ define(function(require) {
     //console.log(hello);
     messages.printstuff(hello);
     messages.printstuff(messages.getHello());
+    dailyMessage.getQuote();
    // currentLocation.getLocation();
 /*    document.getElementById("toDoList").addEventListener("click", function() {
         document.getElementById("toDoList").style.background = "green";
@@ -26,6 +28,7 @@ define(function(require) {
 
     function gotResponse(request, sender, sendResponse){
         console.log("Response to Request", request);
+
         if (request === undefined){
             return;
         }

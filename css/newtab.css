@@ -44,7 +44,9 @@ body {
 	flex-direction: column;
 	align-items: center;
 	color: white;
-	font-size: 33px;
+	padding-top: 20px;
+    font-size: 30px;
+    text-align: center;
 }
 
 .recentlyVisited{
@@ -65,6 +67,10 @@ body {
 	width:200px;
 	top:10px;
 	left:10px;
+	border: none;
+}
+.toDoList:focus{
+    outline: none;
 }
 
 .recentlyVisitedItem{
@@ -90,6 +96,8 @@ body {
 	max-width: 100%;
 	max-height: 6vh;
 	object-fit: contain;
+	display: block;
+    margin: auto;
 }
 
 .weatherText{
@@ -105,4 +113,9 @@ body {
 
 .socialIcon:hover{
 	opacity: 1;
+}
+
+#hotKeys{
+	position: absolute;
+	top: 10px;
 }

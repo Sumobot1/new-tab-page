@@ -21,7 +21,8 @@
   "history",
   "storage",
   "topSites",
-  "geolocation"
+  "geolocation",
+  "http://search.twitter.com/*"
   ],
     "chrome_url_overrides" : {
     "newtab": "newtab.html"
