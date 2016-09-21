@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/newtab.css">
     <link rel="stylesheet" type="text/css" href="css/classy.css">
     <link rel="stylesheet" href="css/font-awesome-4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/modalstyles.css">
     <script data-main="js/main" src="js/lib/require.js"></script>
 </head>
 
@@ -43,12 +44,78 @@
     </div>
     <div id="recentEmails" class="recentEmails"></div>
     <!-- <div id="toDoList" class="toDoList classyBox"> -->
-        <textarea id="toDoList" rows="4" cols="50" class="toDoList classyBox"></textarea>
+    <textarea id="toDoList" rows="4" cols="50" class="toDoList classyBox"></textarea>
     <!-- </div> -->
     <div id="currentWeather"></div>
-    <div id="settingsGear" class="settingsGear"></div>
+    <div id="settingsGear" class="settingsGear"><i class="fa fa-cog fa-2x socialIcon" aria-hidden="true"></i></div>
     <div id="supportUs" class="supportUs"></div>
     <!--<script src="js/scripts.js"></script>-->
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content classyBox">
+            <div class="modal-header">
+                <span class="close">×</span>
+                <h2>Settings</h2>
+            </div>
+            <div class="modal-body">
+                <!-- SETTINGS HEADERS -->
+                <div id="historySettingsHeader" class="settings-title visible">
+                    <h3>History</h3>
+                </div>
+                <div id="timeSettingsHeader" class="settings-title">
+                    <h3>Time</h3>
+                </div>
+                <div id="quoteSettingsHeader" class="settings-title">
+                    <h3>Quote</h3>
+                </div>
+                <div id="greetingSettingsHeader" class="settings-title">
+                    <h3>Greeting</h3>
+                </div>
+                <div id="launcherSettingsHeader" class="settings-title">
+                    <h3>Launcher</h3>
+                </div>
+                <div id="weatherSettingsHeader" class="settings-title">
+                    <h3>Weather</h3>
+                </div>
+                <div id="notepadSettingsHeader" class="settings-title">
+                    <h3>Notepad</h3>
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- SETTINGS CONTENT -->
+                <div id="historySettingsBody" class="settings-content visible">
+                    <div class="settings-option">Show recently visited sites</div>
+                    <div class="settings-description">Get and display your 5 most recently visited websites using the <a class="modal-anchor" href="https://developer.chrome.com/extensions/history">chrome.history</a> API.</div>
+                </div>
+                <div id="timeSettingsBody" class="settings-content visible">
+                    <div class="settings-option">Show current time of day</div>
+                    <!-- 12/24 hour clock? -->
+                </div>
+                <div id="quoteSettingsBody" class="settings-content visible">
+                    <div class="settings-option">Show Quote</div>
+                    <div class="settings-description">Get tweet from a Twitter user or the great <a class="modal-anchor" href="http://www.icndb.com/api/">Chuck Norris API</a>.</div>
+                    <div class="settings-description">Twitter Handle:</div><form></form>
+                </div>
+                <div id="greetingSettingsBody" class="settings-content visible">
+                    <div class="settings-option">Show Greeting</div>
+                </div>
+                <div id="launcherSettingsBody" class="settings-content visible">
+                    <div class="settings-option">Show QuickLaunch Icons</div>
+                    <div class="settings-option">Enable QuickLaunch Icons</div>
+                    <div class="settings-description">By pressing the TAB button, and then any of the below keys will cause the corresponding website to be launched in a new tab.</div>
+                </div>
+                <div id="weatherSettingsBody" class="settings-content visible">
+                    <div class="settings-option">Display Current Weather Conditions</div>
+                    <div class="settings-description">Get and display current weather conditions using the <a class="modal-anchor" href="http://openweathermap.org/api">OpenWeatherMap</a> API.</div>
+                </div>
+                <div id="notepadSettingsBody" class="settings-content visible">
+                    <div class="settings-option">Show Notepad</div>
+                    <div class="settings-description">Show notepad for reminders and personal notes</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

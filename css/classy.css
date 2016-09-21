@@ -22,3 +22,7 @@
 .classyAnchor:hover{
 	text-shadow: 0 0 0.2em rgba(253, 253, 253, 0.77), 0 0 0.3em rgba(253, 253, 253, 0.77);
 }
+
+.classyAnchor:focus{
+    outline: none;
+}
