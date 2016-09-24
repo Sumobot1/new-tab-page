@@ -25,6 +25,8 @@
     animation-name: animatetop;
     animation-duration: 0.4s;
     display: block;
+    min-height: 550px;
+    min-width: 570px;
 }
 
 /* Add Animation */
@@ -60,6 +62,7 @@
 .modal-body {
     padding: 2px 16px;
     display: flex;
+    justify-content: space-between;
 }
 
 .modal-footer {
@@ -72,8 +75,30 @@
 }
 
 .settings-title{
-    padding-right: 35px;
+    font-size: 17px;
 }
+
 .settings-title:hover{
     cursor: pointer;
+}
+
+.selected {
+    border-bottom: white 3px solid;
+}
+
+.modal-title {
+    font-size: 26px;
+}
+
+.settingsDescriptions {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.settings-content {
+    display: flex;
+}
+
+.settings-checkbox {
+    margin-right: 25px;
 }

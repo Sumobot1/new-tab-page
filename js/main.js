@@ -100,3 +100,26 @@ var weatherSettingsBody = document.getElementById("weatherSettingsBody");
 var notepadSettingsBody = document.getElementById("notepadSettingsBody");
 var arBodies = [historySettingsBody, timeSettingsBody, quoteSettingsBody, greetingSettingsBody, launcherSettingsBody, weatherSettingsBody, notepadSettingsBody];
 var arHeaders = [historySettingsHeader, timeSettingsHeader, quoteSettingsHeader, greetingSettingsHeader, launcherSettingsHeader, weatherSettingsHeader, notepadSettingsHeader];
+
+window.onload = function(){
+    for (var i = 0;i < arHeaders.length; i++) {
+        arHeaders[i].addEventListener('click',function(){
+            changeSettingsState(this.id);
+        }, false)
+    }
+}
+
+function changeSettingsState(id){
+    for (var i = 0;i<arHeaders.length;i++){
+        if (arHeaders[i].id === id){
+            console.log("here");
+            console.log(arHeaders[i].classList);
+            arHeaders[i].classList.add("selected");
+            arBodies[i].style.display = "flex";
+        }else{
+            arHeaders[i].classList.remove("selected");
+            arBodies[i].style.display = "none";
+        }
+    }
+    console.log("ID IS: "+id);
+}

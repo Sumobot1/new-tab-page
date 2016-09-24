@@ -56,11 +56,11 @@
         <div class="modal-content classyBox">
             <div class="modal-header">
                 <span class="close">×</span>
-                <h2>Settings</h2>
+                <h2 class="modal-title">Settings</h2>
             </div>
             <div class="modal-body">
                 <!-- SETTINGS HEADERS -->
-                <div id="historySettingsHeader" class="settings-title visible">
+                <div id="historySettingsHeader" class="settings-title selected">
                     <h3>History</h3>
                 </div>
                 <div id="timeSettingsHeader" class="settings-title">
@@ -82,36 +82,58 @@
                     <h3>Notepad</h3>
                 </div>
             </div>
-            <div class="modal-body">
+            <div class="modal-body settingsDescriptions">
                 <!-- SETTINGS CONTENT -->
-                <div id="historySettingsBody" class="settings-content visible">
-                    <div class="settings-option">Show recently visited sites</div>
-                    <div class="settings-description">Get and display your 5 most recently visited websites using the <a class="modal-anchor" href="https://developer.chrome.com/extensions/history">chrome.history</a> API.</div>
+                <div id="historySettingsBody" class="settings-content">
+                    <input type="checkbox" class="settings-checkbox" id="cbox1" value="first_checkbox">
+                    <div>
+                        <div class="settings-option">Show recently visited sites</div>
+                        <div class="settings-description">Get and display your 5 most recently visited websites using the <a class="modal-anchor" href="https://developer.chrome.com/extensions/history">chrome.history</a> API.</div>
+                    </div>
                 </div>
-                <div id="timeSettingsBody" class="settings-content visible">
-                    <div class="settings-option">Show current time of day</div>
+                <div id="timeSettingsBody" class="settings-content" style="display: none">
+                    <input type="checkbox" class="settings-checkbox" id="cbox2" value="second_checkbox">
+                    <div>
+                        <div class="settings-option">Show current time of day</div>
+                    </div>
                     <!-- 12/24 hour clock? -->
                 </div>
-                <div id="quoteSettingsBody" class="settings-content visible">
-                    <div class="settings-option">Show Quote</div>
-                    <div class="settings-description">Get tweet from a Twitter user or the great <a class="modal-anchor" href="http://www.icndb.com/api/">Chuck Norris API</a>.</div>
-                    <div class="settings-description">Twitter Handle:</div><form></form>
+                <div id="quoteSettingsBody" class="settings-content" style="display: none">
+                    <input type="checkbox" class="settings-checkbox" id="cbox3" value="third_checkbox">
+                    <div>
+                        <div class="settings-option">Show Quote</div>
+                        <div class="settings-description">Get tweet from a Twitter user or the great <a class="modal-anchor" href="http://www.icndb.com/api/">Chuck Norris API</a>.</div>
+                        <div class="settings-description">Twitter Handle:</div>
+                        <form></form>
+                    </div>
                 </div>
-                <div id="greetingSettingsBody" class="settings-content visible">
-                    <div class="settings-option">Show Greeting</div>
+                <div id="greetingSettingsBody" class="settings-content" style="display: none">
+                    <input type="checkbox" class="settings-checkbox" id="cbox4" value="fourth_checkbox">
+                    <div>
+                        <div class="settings-option">Show Greeting</div>
+                    </div>
                 </div>
-                <div id="launcherSettingsBody" class="settings-content visible">
-                    <div class="settings-option">Show QuickLaunch Icons</div>
-                    <div class="settings-option">Enable QuickLaunch Icons</div>
-                    <div class="settings-description">By pressing the TAB button, and then any of the below keys will cause the corresponding website to be launched in a new tab.</div>
+                <div id="launcherSettingsBody" class="settings-content" style="display: none">
+                    <input type="checkbox" class="settings-checkbox" id="cbox5" value="fifth_checkbox">
+                    <div>
+                        <div class="settings-option">Show QuickLaunch Icons</div>
+                        <div class="settings-option">Enable QuickLaunch Icons</div>
+                        <div class="settings-description">By pressing the TAB button, and then any of the below keys will cause the corresponding website to be launched in a new tab.</div>
+                    </div>
                 </div>
-                <div id="weatherSettingsBody" class="settings-content visible">
-                    <div class="settings-option">Display Current Weather Conditions</div>
-                    <div class="settings-description">Get and display current weather conditions using the <a class="modal-anchor" href="http://openweathermap.org/api">OpenWeatherMap</a> API.</div>
+                <div id="weatherSettingsBody" class="settings-content" style="display: none">
+                    <input type="checkbox" class="settings-checkbox" id="cbox6" value="sixth_checkbox">
+                    <div>
+                        <div class="settings-option">Display Current Weather Conditions</div>
+                        <div class="settings-description">Get and display current weather conditions using the <a class="modal-anchor" href="http://openweathermap.org/api">OpenWeatherMap</a> API.</div>
+                    </div>
                 </div>
-                <div id="notepadSettingsBody" class="settings-content visible">
-                    <div class="settings-option">Show Notepad</div>
-                    <div class="settings-description">Show notepad for reminders and personal notes</div>
+                <div id="notepadSettingsBody" class="settings-content" style="display: none">
+                    <input type="checkbox" class="settings-checkbox" id="cbox7" value="seventh_checkbox">
+                    <div>
+                        <div class="settings-option">Show Notepad</div>
+                        <div class="settings-description">Show notepad for reminders and personal notes</div>
+                    </div>
                 </div>
             </div>
         </div>
