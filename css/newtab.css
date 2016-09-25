@@ -141,3 +141,15 @@ h2 {
 	-webkit-margin-before: 10px;
     -webkit-margin-after: 1px;
 }
+
+.name-input-text{
+	background: none;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid white;
+    height: 62px;
+    font-size: 60px;
+    color: white;
+    font-family: "Segoe UI";
+    text-align: center;
+}

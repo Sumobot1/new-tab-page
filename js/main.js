@@ -34,7 +34,7 @@ define(function(require) {
             return;
         }
         if (request.requesttype === "updatedTime"){
-            mainTime.updateTime(request.newTime, request.newPartOfDay);
+            mainTime.updateTime(request.newTime, request.newPartOfDay, request.userName);
         }else if (request.requesttype === "updatedHistory"){
             recentlyVisitedSites.updateSites(request.history);
         }else if (request.requesttype === "updatedWeather"){
@@ -50,7 +50,7 @@ function code(e) {
     e = e || window.event;
     return(e.keyCode || e.which);
 }
-window.onload = function(){
+window.onfocus = function(){
     document.onkeypress = function(e){
         var key = code(e);
         alert(key);
@@ -67,6 +67,9 @@ var btn = document.getElementById("settingsGear");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
+var userNameField = document.getElementById("userNameField");
+var settingsNameField = document.getElementById("settingsNameField");
+
 // When the user clicks the button, open the modal
 btn.onclick = function() {
     modal.style.display = "block";
@@ -81,6 +84,18 @@ span.onclick = function() {
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+    }
+}
+
+userNameField.onkeypress = function(key){
+    if (code(key) === 13){
+        chrome.runtime.sendMessage({requesttype: "updateSettings", setting: "user-name", value: userNameField.value});
+    }
+}
+
+settingsNameField.onkeypress = function(key) {
+    if (code(key) === 13){
+        chrome.runtime.sendMessage({requesttype: "updateSettings", setting: "user-name", value: settingsNameField.value});
     }
 }
 
@@ -101,7 +116,7 @@ var notepadSettingsBody = document.getElementById("notepadSettingsBody");
 var arBodies = [historySettingsBody, timeSettingsBody, quoteSettingsBody, greetingSettingsBody, launcherSettingsBody, weatherSettingsBody, notepadSettingsBody];
 var arHeaders = [historySettingsHeader, timeSettingsHeader, quoteSettingsHeader, greetingSettingsHeader, launcherSettingsHeader, weatherSettingsHeader, notepadSettingsHeader];
 
-window.onload = function(){
+window.onfocus = function(){
     for (var i = 0;i < arHeaders.length; i++) {
         arHeaders[i].addEventListener('click',function(){
             changeSettingsState(this.id);

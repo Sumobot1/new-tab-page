@@ -11,13 +11,14 @@ timeanddate.updateTime = function () {
             minutes = "0" + minutes;
         }
         var partOfDay;
-        if(hours > 11){ 
+        if(hours >= 12){ 
             if (hours < 18){
                 partOfDay = "afternoon";
             }else{
                 partOfDay = "evening"
+            }if (hours >12){
+                hours -=12;
             }
-            hours -=12;
         } else {
             partOfDay = "morning"
             if (hours === 0){
@@ -26,7 +27,7 @@ timeanddate.updateTime = function () {
         }
         var v = hours + ":" + minutes;  
         console.log("Current Time: ", v);
-        background.sendMessage({requesttype: "updatedTime", newTime: v, newPartOfDay: partOfDay});
+        background.sendMessage({requesttype: "updatedTime", newTime: v, newPartOfDay: partOfDay, userName: background.theUserSettings['user-name']});
         var self = this;
         setTimeout(function(){console.log("Updating Time ");self.updateTime()},1000);
     };

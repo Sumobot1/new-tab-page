@@ -19,7 +19,6 @@
             <i class="fa fa-flickr socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-github socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-reddit-alien socialIcon fa-5x" aria-hidden="true"></i>
-            <i class="fa fa-pinterest socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-twitch socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-vimeo-square socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-youtube-play socialIcon fa-5x" aria-hidden="true"></i>
@@ -36,6 +35,7 @@
         <div id="mainTime" class="mainTime" disabled></div>
         <!-- <div id="partOfDay" class="partOfDay"></div> -->
         <div id="mainGreeting" class="mainGreeting" disabled></div>
+        <input id="userNameField" type="text" class="name-input-text" style="display: none;">
         <div id="mainQuote" class="mainQuote" disabled>Le Quote Shall Goeth Here</div>
     </div>
     <div id="recentlyVisited" class="recentlyVisited">
@@ -103,22 +103,101 @@
                     <div>
                         <div class="settings-option">Show Quote</div>
                         <div class="settings-description">Get tweet from a Twitter user or the great <a class="modal-anchor" href="http://www.icndb.com/api/">Chuck Norris API</a>.</div>
+                        <br>
+                        <!-- Rounded switch -->
+                        <label class="switch">
+                            <input type="checkbox">
+                            <div class="slider round"></div>
+                        </label>
+                        <br><br>
                         <div class="settings-description">Twitter Handle:</div>
-                        <form></form>
+                        <input type="text" class="settings-input-text">
                     </div>
                 </div>
                 <div id="greetingSettingsBody" class="settings-content" style="display: none">
                     <input type="checkbox" class="settings-checkbox" id="cbox4" value="fourth_checkbox">
                     <div>
                         <div class="settings-option">Show Greeting</div>
+                        <div class="settings-description">Change Name:</div>
+                        <input id="settingsNameField" type="text" class="settings-input-text">
+                        <div class="settings-description">Hit enter after typing your name to save it</div>
                     </div>
                 </div>
                 <div id="launcherSettingsBody" class="settings-content" style="display: none">
                     <input type="checkbox" class="settings-checkbox" id="cbox5" value="fifth_checkbox">
                     <div>
-                        <div class="settings-option">Show QuickLaunch Icons</div>
-                        <div class="settings-option">Enable QuickLaunch Icons</div>
+                        <div class="settings-option">Show/Enable QuickLaunch Icons</div>
                         <div class="settings-description">By pressing the TAB button, and then any of the below keys will cause the corresponding website to be launched in a new tab.</div>
+                        <br>
+                        <br>
+                        <table>
+                            <tr>
+                                <th>Site</th>
+                                <th>Key</th>
+                                <th>Visible</th>
+                                <th>Enabled</th>
+                            </tr>
+                            <tr>
+                                <td>Bitbucket</td>
+                                <td>1</td>
+                                <td>
+                                    <input type="checkbox" id="bitbucket-visible" value="bitbucket_visible">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="bitbucket-enabled" value="bitbucket_enabled">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Facebook</td>
+                                <td>2</td>
+                                <td>
+                                    <input type="checkbox" id="facebook-visible" value="facebook_visible">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="facebook-enabled" value="facebook_enabled">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Flickr</td>
+                                <td>3</td>
+                                <td>
+                                    <input type="checkbox" id="flickr-visible" value="flickr_visible">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="flickr-enabled" value="flickr_enabled">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Github</td>
+                                <td>4</td>
+                                <td>
+                                    <input type="checkbox" id="github-visible" value="github_visible">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="github-enabled" value="github_enabled">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Reddit</td>
+                                <td>5</td>
+                                <td>
+                                    <input type="checkbox" id="reddit-visible" value="reddit_visible">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="reddit-enabled" value="reddit_enabled">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Twitch</td>
+                                <td>6</td>
+                                <td>
+                                    <input type="checkbox" id="twitch-visible" value="twitch_visible">
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="twitch-enabled" value="twitch_enabled">
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
                 <div id="weatherSettingsBody" class="settings-content" style="display: none">
