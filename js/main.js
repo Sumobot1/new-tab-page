@@ -8,6 +8,7 @@ define(function(require) {
     var recentlyVisitedSites = require('./content/recentlyVisitedSites');
     var dailyMessage = require('./content/dailyMessage');
     var getQuote = require('./content/dailyMessage');
+    var settingsPage = require('./content/settingsPage');
 
     // Load library/vendor modules using
     // full IDs, like:
@@ -41,6 +42,8 @@ define(function(require) {
             currentWeather.updateWeather(request.currentWeather, request.dayOrNight);
         }else if (request.requesttype === "gotQuote"){
             getQuote.showQuote(request.quote);
+        }else if (request.requesttype === "settings"){
+            settingsPage.applySettings(request.settings);
         }
     }
 });
@@ -113,18 +116,33 @@ var greetingSettingsBody = document.getElementById("greetingSettingsBody");
 var launcherSettingsBody = document.getElementById("launcherSettingsBody");
 var weatherSettingsBody = document.getElementById("weatherSettingsBody");
 var notepadSettingsBody = document.getElementById("notepadSettingsBody");
+//
+var showRecentlyVisitedCheckbox = document.getElementById("showRecentlyVisitedCheckbox");
+var showCurrentTimeCheckbox = document.getElementById("showCurrentTimeCheckbox");
+var showQuoteCheckbox = document.getElementById("showQuoteCheckbox");
+var showGreetingCheckbox = document.getElementById("showGreetingCheckbox");
+var enableQuicklaunchCheckbox = document.getElementById("enableQuicklaunchCheckbox");
+var showCurrentWeatherCheckbox = document.getElementById("showCurrentWeatherCheckbox");
+var showNotePadCheckbox = document.getElementById("showNotePadCheckbox");
+
 var arBodies = [historySettingsBody, timeSettingsBody, quoteSettingsBody, greetingSettingsBody, launcherSettingsBody, weatherSettingsBody, notepadSettingsBody];
 var arHeaders = [historySettingsHeader, timeSettingsHeader, quoteSettingsHeader, greetingSettingsHeader, launcherSettingsHeader, weatherSettingsHeader, notepadSettingsHeader];
+var arSettingsCheckboxes = [showRecentlyVisitedCheckbox, showCurrentTimeCheckbox, showQuoteCheckbox, showGreetingCheckbox, enableQuicklaunchCheckbox, showCurrentWeatherCheckbox, showNotePadCheckbox];
 
 window.onfocus = function(){
     for (var i = 0;i < arHeaders.length; i++) {
         arHeaders[i].addEventListener('click',function(){
-            changeSettingsState(this.id);
+            changeSettingsVisibilityState(this.id);
+        }, false)
+    }
+    for (var i = 0;i<arSettingsCheckboxes.length;i++){
+        arSettingsCheckboxes[i].addEventListener('click', function(){
+            changeSettingsElementState(this.id);
         }, false)
     }
 }
 
-function changeSettingsState(id){
+function changeSettingsVisibilityState(id){
     for (var i = 0;i<arHeaders.length;i++){
         if (arHeaders[i].id === id){
             console.log("here");
@@ -137,4 +155,10 @@ function changeSettingsState(id){
         }
     }
     console.log("ID IS: "+id);
+}
+
+function changeSettingsElementState(id){
+    console.log("id: "+id);
+    console.log(id.replace("Checkbox", ''));
+    chrome.runtime.sendMessage({requesttype: "updateSettings", setting: id.replace("Checkbox", ''), value: document.getElementById(id).checked});
 }

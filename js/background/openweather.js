@@ -41,9 +41,9 @@ openweather.showError = function(error){
 	}
 }
 
-openweather.getCurrentWeather = function(JSON) {
-    theJSON = JSON;
-    OPENWEATHERAPIID = theJSON['OPENWEATHERAPIID'];
+openweather.getCurrentWeather = function() {
+    //theJSON = background.theJSON;
+    OPENWEATHERAPIID = background.theJSON['OPENWEATHERAPIID'];
     this.getLocation();
 }
 

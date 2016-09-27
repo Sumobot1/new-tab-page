@@ -19,6 +19,7 @@ if (localStorage.getItem("user-settings")){
 }else{
     console.log("COULD NOT FIND USER SETTINGS");
     loadJSON('user-settings.json', gotUserSettings);
+    console.log(background.theUserSettings);
 }
 
 function gotAssets(response){
@@ -33,15 +34,22 @@ function gotUserSettings(response){
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
     if (request.requesttype === "ready") {
-        chromehistory.getRecentlyVisited(5);
-        timeanddate.updateTime();
-        openweather.getCurrentWeather(background.theJSON);
-        quote.getQuote();
+        if (background.theUserSettings["showRecentlyVisited"]){
+            chromehistory.getRecentlyVisited(5);
+        }if (background.theUserSettings["showCurrentTime"]){
+            timeanddate.updateTime();
+        }if (background.theUserSettings["showQuote"]){
+            quote.getQuote();
+        }if (background.theUserSettings["showCurrentWeather"]){
+            openweather.getCurrentWeather();
+        }
+        background.sendMessage({requesttype: "settings", settings: background.theUserSettings});       
     }else if (request.requesttype === "updateSettings"){
         console.log("SETTING USER SETTINGS NOW");
         background.theUserSettings[request.setting] = request.value;
         console.log(background.theUserSettings);
         localStorage.setItem('user-settings', JSON.stringify(background.theUserSettings));
+        background.sendMessage({requesttype: "settings", settings: background.theUserSettings});
     }
     if (request.greeting === "hello")
         sendResponse({ farewell: "goodbye" });

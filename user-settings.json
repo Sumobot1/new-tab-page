@@ -1,3 +1,14 @@
 {
-	"user-name": ""
+	"user-name": "",
+	"showRecentlyVisited": false,
+	"showCurrentTime": true,
+	"showQuote": true,
+	"quote-from-twitter": false,
+	"showGreeting": true,
+	"enableQuicklaunch": false,
+	"enable-launcher": false,
+	"launcher-items": "",
+	"showCurrentWeather": true,
+	"showNotePad": false,
+	"current-note": ""
 }

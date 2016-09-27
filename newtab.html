@@ -34,9 +34,11 @@
         </div>
         <div id="mainTime" class="mainTime" disabled></div>
         <!-- <div id="partOfDay" class="partOfDay"></div> -->
+        <div id="mainGreetingWrapper">
         <div id="mainGreeting" class="mainGreeting" disabled></div>
         <input id="userNameField" type="text" class="name-input-text" style="display: none;">
-        <div id="mainQuote" class="mainQuote" disabled>Le Quote Shall Goeth Here</div>
+        </div>
+        <div id="mainQuote" class="mainQuote" disabled></div>
     </div>
     <div id="recentlyVisited" class="recentlyVisited">
         <!-- <div id="recentlyVisitedBackground" class="classyBackground"></div> -->
@@ -85,21 +87,21 @@
             <div class="modal-body settingsDescriptions">
                 <!-- SETTINGS CONTENT -->
                 <div id="historySettingsBody" class="settings-content">
-                    <input type="checkbox" class="settings-checkbox" id="cbox1" value="first_checkbox">
+                    <input type="checkbox" class="settings-checkbox" id="showRecentlyVisitedCheckbox" value="first_checkbox">
                     <div>
                         <div class="settings-option">Show recently visited sites</div>
                         <div class="settings-description">Get and display your 5 most recently visited websites using the <a class="modal-anchor" href="https://developer.chrome.com/extensions/history">chrome.history</a> API.</div>
                     </div>
                 </div>
                 <div id="timeSettingsBody" class="settings-content" style="display: none">
-                    <input type="checkbox" class="settings-checkbox" id="cbox2" value="second_checkbox">
+                    <input type="checkbox" class="settings-checkbox" id="showCurrentTimeCheckbox" value="second_checkbox">
                     <div>
                         <div class="settings-option">Show current time of day</div>
                     </div>
                     <!-- 12/24 hour clock? -->
                 </div>
                 <div id="quoteSettingsBody" class="settings-content" style="display: none">
-                    <input type="checkbox" class="settings-checkbox" id="cbox3" value="third_checkbox">
+                    <input type="checkbox" class="settings-checkbox" id="showQuoteCheckbox" value="third_checkbox">
                     <div>
                         <div class="settings-option">Show Quote</div>
                         <div class="settings-description">Get tweet from a Twitter user or the great <a class="modal-anchor" href="http://www.icndb.com/api/">Chuck Norris API</a>.</div>
@@ -115,7 +117,7 @@
                     </div>
                 </div>
                 <div id="greetingSettingsBody" class="settings-content" style="display: none">
-                    <input type="checkbox" class="settings-checkbox" id="cbox4" value="fourth_checkbox">
+                    <input type="checkbox" class="settings-checkbox" id="showGreetingCheckbox" value="fourth_checkbox">
                     <div>
                         <div class="settings-option">Show Greeting</div>
                         <div class="settings-description">Change Name:</div>
@@ -124,7 +126,7 @@
                     </div>
                 </div>
                 <div id="launcherSettingsBody" class="settings-content" style="display: none">
-                    <input type="checkbox" class="settings-checkbox" id="cbox5" value="fifth_checkbox">
+                    <input type="checkbox" class="settings-checkbox" id="enableQuicklaunchCheckbox" value="fifth_checkbox">
                     <div>
                         <div class="settings-option">Show/Enable QuickLaunch Icons</div>
                         <div class="settings-description">By pressing the TAB button, and then any of the below keys will cause the corresponding website to be launched in a new tab.</div>
@@ -201,14 +203,14 @@
                     </div>
                 </div>
                 <div id="weatherSettingsBody" class="settings-content" style="display: none">
-                    <input type="checkbox" class="settings-checkbox" id="cbox6" value="sixth_checkbox">
+                    <input type="checkbox" class="settings-checkbox" id="showCurrentWeatherCheckbox" value="sixth_checkbox">
                     <div>
                         <div class="settings-option">Display Current Weather Conditions</div>
                         <div class="settings-description">Get and display current weather conditions using the <a class="modal-anchor" href="http://openweathermap.org/api">OpenWeatherMap</a> API.</div>
                     </div>
                 </div>
                 <div id="notepadSettingsBody" class="settings-content" style="display: none">
-                    <input type="checkbox" class="settings-checkbox" id="cbox7" value="seventh_checkbox">
+                    <input type="checkbox" class="settings-checkbox" id="showNotePadCheckbox" value="seventh_checkbox">
                     <div>
                         <div class="settings-option">Show Notepad</div>
                         <div class="settings-description">Show notepad for reminders and personal notes</div>
