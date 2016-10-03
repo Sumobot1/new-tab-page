@@ -14,29 +14,25 @@
 <body>
     <div id="greetingWrapper" class="greetingWrapper">
         <div id="hotKeys">
-            <i class="fa fa-bitbucket socialIcon fa-5x" aria-hidden="true"></i>
+<!--             <i class="fa fa-bitbucket socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-facebook-official socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-flickr socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-github socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-reddit-alien socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-twitch socialIcon fa-5x" aria-hidden="true"></i>
-            <i class="fa fa-vimeo-square socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-youtube-play socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-twitter socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-slack socialIcon fa-5x" aria-hidden="true"></i>
-            <i class="fa fa-stack-overflow socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-linkedin socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-amazon socialIcon fa-5x" aria-hidden="true"></i>
-            <i class="fa fa-linkedin-square socialIcon fa-5x" aria-hidden="true"></i>
             <i class="fa fa-soundcloud socialIcon fa-5x" aria-hidden="true"></i>
-            <i class="fa fa-dropbox socialIcon fa-5x" aria-hidden="true"></i>
-            <i class="fa fa-spotify socialIcon fa-5x" aria-hidden="true"></i>
+            <i class="fa fa-spotify socialIcon fa-5x" aria-hidden="true"></i> -->
         </div>
         <div id="mainTime" class="mainTime" disabled></div>
         <!-- <div id="partOfDay" class="partOfDay"></div> -->
         <div id="mainGreetingWrapper">
-        <div id="mainGreeting" class="mainGreeting" disabled></div>
-        <input id="userNameField" type="text" class="name-input-text" style="display: none;">
+            <div id="mainGreeting" class="mainGreeting" disabled></div>
+            <input id="userNameField" type="text" class="name-input-text" style="display: none;">
         </div>
         <div id="mainQuote" class="mainQuote" disabled></div>
     </div>
@@ -111,7 +107,8 @@
                             <input type="checkbox">
                             <div class="slider round"></div>
                         </label>
-                        <br><br>
+                        <br>
+                        <br>
                         <div class="settings-description">Twitter Handle:</div>
                         <input type="text" class="settings-input-text">
                     </div>
@@ -132,14 +129,16 @@
                         <div class="settings-description">By pressing the TAB button, and then any of the below keys will cause the corresponding website to be launched in a new tab.</div>
                         <br>
                         <br>
-                        <table>
-                            <tr>
-                                <th>Site</th>
-                                <th>Key</th>
-                                <th>Visible</th>
-                                <th>Enabled</th>
-                            </tr>
-                            <tr>
+                        <table id="quickLaunchSettingsTable">
+                            <tbody id="quickLaunchSettingsBody">
+                                <tr>
+                                    <th>Site</th>
+                                    <th>Key</th>
+                                    <th>Enabled</th>
+                                    <th>Visible</th>
+                                </tr>
+                            </tbody>
+                            <!--                             <tr>
                                 <td>Bitbucket</td>
                                 <td>1</td>
                                 <td>
@@ -198,7 +197,7 @@
                                 <td>
                                     <input type="checkbox" id="twitch-enabled" value="twitch_enabled">
                                 </td>
-                            </tr>
+                            </tr> -->
                         </table>
                     </div>
                 </div>

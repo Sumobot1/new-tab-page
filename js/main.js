@@ -88,6 +88,8 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+    console.log("saving the thing");
+    chrome.runtime.sendMessage({requesttype: "updateSettings", setting: "current-note", value: toDoList.value});
 }
 
 userNameField.onkeypress = function(key){
@@ -125,11 +127,13 @@ var enableQuicklaunchCheckbox = document.getElementById("enableQuicklaunchCheckb
 var showCurrentWeatherCheckbox = document.getElementById("showCurrentWeatherCheckbox");
 var showNotePadCheckbox = document.getElementById("showNotePadCheckbox");
 
+var toDoList = document.getElementById("toDoList");
+
 var arBodies = [historySettingsBody, timeSettingsBody, quoteSettingsBody, greetingSettingsBody, launcherSettingsBody, weatherSettingsBody, notepadSettingsBody];
 var arHeaders = [historySettingsHeader, timeSettingsHeader, quoteSettingsHeader, greetingSettingsHeader, launcherSettingsHeader, weatherSettingsHeader, notepadSettingsHeader];
 var arSettingsCheckboxes = [showRecentlyVisitedCheckbox, showCurrentTimeCheckbox, showQuoteCheckbox, showGreetingCheckbox, enableQuicklaunchCheckbox, showCurrentWeatherCheckbox, showNotePadCheckbox];
 
-window.onfocus = function(){
+window.onload, window.onfocus = function(){
     for (var i = 0;i < arHeaders.length; i++) {
         arHeaders[i].addEventListener('click',function(){
             changeSettingsVisibilityState(this.id);
@@ -140,6 +144,11 @@ window.onfocus = function(){
             changeSettingsElementState(this.id);
         }, false)
     }
+}
+var timeout;
+toDoList.onkeypress = function(key){
+    clearTimeout(timeout);
+    timeout = setTimeout(function(){console.log("SAVING SHIT");chrome.runtime.sendMessage({requesttype: "updateSettings", setting: "current-note", value: toDoList.value});}, 1000);
 }
 
 function changeSettingsVisibilityState(id){
@@ -162,3 +171,4 @@ function changeSettingsElementState(id){
     console.log(id.replace("Checkbox", ''));
     chrome.runtime.sendMessage({requesttype: "updateSettings", setting: id.replace("Checkbox", ''), value: document.getElementById(id).checked});
 }
+

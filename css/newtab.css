@@ -110,6 +110,8 @@ body {
 .socialIcon{
 	color: white;
     opacity: 0.7;
+    margin-right: 16px;
+    margin-left: 16px;
 }
 
 .socialIcon:hover{

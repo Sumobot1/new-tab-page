@@ -12,21 +12,21 @@ var newTabs = [];
 
 
 loadJSON('assets.json', gotAssets);
-if (localStorage.getItem("user-settings")){
+if (localStorage.getItem("user-settings")) {
     console.log("FOUND USER SETTINGS!");
     console.log(localStorage.getItem("user-settings"));
     background.theUserSettings = JSON.parse(localStorage.getItem("user-settings"));
-}else{
+} else {
     console.log("COULD NOT FIND USER SETTINGS");
     loadJSON('user-settings.json', gotUserSettings);
     console.log(background.theUserSettings);
 }
 
-function gotAssets(response){
+function gotAssets(response) {
     background.theJSON = JSON.parse(response);
 }
 
-function gotUserSettings(response){
+function gotUserSettings(response) {
     background.theUserSettings = JSON.parse(response);
 }
 
@@ -34,22 +34,33 @@ function gotUserSettings(response){
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
     if (request.requesttype === "ready") {
-        if (background.theUserSettings["showRecentlyVisited"]){
+        if (background.theUserSettings["showRecentlyVisited"]) {
             chromehistory.getRecentlyVisited(5);
-        }if (background.theUserSettings["showCurrentTime"]){
+        }
+        if (background.theUserSettings["showCurrentTime"]) {
             timeanddate.updateTime();
-        }if (background.theUserSettings["showQuote"]){
+        }
+        if (background.theUserSettings["showQuote"]) {
             quote.getQuote();
-        }if (background.theUserSettings["showCurrentWeather"]){
+        }
+        if (background.theUserSettings["showCurrentWeather"]) {
             openweather.getCurrentWeather();
         }
-        background.sendMessage({requesttype: "settings", settings: background.theUserSettings});       
-    }else if (request.requesttype === "updateSettings"){
-        console.log("SETTING USER SETTINGS NOW");
-        background.theUserSettings[request.setting] = request.value;
+        background.sendMessage({ requesttype: "settings", settings: background.theUserSettings });
+    } else if (request.requesttype === "updateSettings") {
+        if (request.setting === "launcher-items") {
+            console.log("REQUEST");
+            console.log(request);
+            console.log(background.theUserSettings[request.setting][request.index]);
+            console.log(background.theUserSettings[request.setting][request.index][request.attribute]);
+            background.theUserSettings[request.setting][parseInt(request.index)][request.attribute] = request.value;
+        } else {
+            console.log("SETTING USER SETTINGS NOW");
+            background.theUserSettings[request.setting] = request.value;
+        }
         console.log(background.theUserSettings);
         localStorage.setItem('user-settings', JSON.stringify(background.theUserSettings));
-        background.sendMessage({requesttype: "settings", settings: background.theUserSettings});
+        background.sendMessage({ requesttype: "settings", settings: background.theUserSettings });
     }
     if (request.greeting === "hello")
         sendResponse({ farewell: "goodbye" });
@@ -57,23 +68,23 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 });
 
 background.sendMessage = function(message) {
-    chrome.tabs.query({}, function(tabs) {      
+    chrome.tabs.query({}, function(tabs) {
         for (var i = 0; i < tabs.length; ++i) {
-            chrome.tabs.sendMessage(tabs[i].id, message, function(){});
+            chrome.tabs.sendMessage(tabs[i].id, message, function() {});
         }
     });
 };
 
 
- function loadJSON(json, callback) {   
+function loadJSON(json, callback) {
     var xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
-    xobj.open('GET', json, true); 
-    xobj.onreadystatechange = function () {
-          if (xobj.readyState == 4 && xobj.status == "200") {
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', json, true);
+    xobj.onreadystatechange = function() {
+        if (xobj.readyState == 4 && xobj.status == "200") {
             // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
             callback(xobj.responseText);
-          }
+        }
     };
-    xobj.send(null);  
- }
+    xobj.send(null);
+}
