@@ -13,53 +13,52 @@ define(function(require) {
     // Load library/vendor modules using
     // full IDs, like:
     var hello = messages.getHello();
+    var user_settings;
     //console.log(hello);
     messages.printstuff(hello);
     messages.printstuff(messages.getHello());
-   // dailyMessage.getQuote();
-   // currentLocation.getLocation();
-/*    document.getElementById("toDoList").addEventListener("click", function() {
-        document.getElementById("toDoList").style.background = "green";
-        chrome.runtime.sendMessage({ greeting: "hello" }, function(response) {
-            console.log(response.farewell);
-        });
-        
-    });*/
-    chrome.runtime.sendMessage({requesttype: "ready"}, gotResponse/*function(response){console.log("gotresponse")}*/);
+    chrome.runtime.sendMessage({ requesttype: "ready" }, gotResponse);
     chrome.runtime.onMessage.addListener(gotResponse);
 
-    function gotResponse(request, sender, sendResponse){
+    function gotResponse(request, sender, sendResponse) {
         console.log("Response to Request", request);
 
-        if (request === undefined){
+        if (request === undefined) {
             return;
         }
-        if (request.requesttype === "updatedTime"){
+        if (request.requesttype === "updatedTime") {
             mainTime.updateTime(request.newTime, request.newPartOfDay, request.userName);
-        }else if (request.requesttype === "updatedHistory"){
+        } else if (request.requesttype === "updatedHistory") {
             recentlyVisitedSites.updateSites(request.history);
-        }else if (request.requesttype === "updatedWeather"){
+        } else if (request.requesttype === "updatedWeather") {
             currentWeather.updateWeather(request.currentWeather, request.dayOrNight);
-        }else if (request.requesttype === "gotQuote"){
+        } else if (request.requesttype === "gotQuote") {
             getQuote.showQuote(request.quote);
-        }else if (request.requesttype === "settings"){
+        } else if (request.requesttype === "settings") {
+            user_settings = request.settings;
             settingsPage.applySettings(request.settings);
         }
     }
+
+    function code(e) {
+        e = e || window.event;
+        return (e.keyCode || e.which);
+    }
+    window.onload = function() {
+        document.onkeypress = function(e) {
+            var key = code(e);
+            // alert(key);
+            for (var i = 0; i < user_settings['launcher-items'].length; i++) {
+                if (key === user_settings['launcher-items'][i].key) {
+                    chrome.runtime.sendMessage({ requesttype: "openHotKeyTab", site: user_settings['launcher-items'][i].url });
+                }
+            }
+        };
+    };
 });
 
 
-function code(e) {
-    e = e || window.event;
-    return(e.keyCode || e.which);
-}
-window.onfocus = function(){
-    document.onkeypress = function(e){
-        var key = code(e);
-        alert(key);
-        // do something with key
-    };
-};
+
 
 //Modal Stuff
 var modal = document.getElementById('settingsModal');
@@ -89,18 +88,18 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
     console.log("saving the thing");
-    chrome.runtime.sendMessage({requesttype: "updateSettings", setting: "current-note", value: toDoList.value});
+    chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "current-note", value: toDoList.value });
 }
 
-userNameField.onkeypress = function(key){
-    if (code(key) === 13){
-        chrome.runtime.sendMessage({requesttype: "updateSettings", setting: "user-name", value: userNameField.value});
+userNameField.onkeypress = function(key) {
+    if (code(key) === 13) {
+        chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "user-name", value: userNameField.value });
     }
 }
 
 settingsNameField.onkeypress = function(key) {
-    if (code(key) === 13){
-        chrome.runtime.sendMessage({requesttype: "updateSettings", setting: "user-name", value: settingsNameField.value});
+    if (code(key) === 13) {
+        chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "user-name", value: settingsNameField.value });
     }
 }
 
@@ -133,42 +132,42 @@ var arBodies = [historySettingsBody, timeSettingsBody, quoteSettingsBody, greeti
 var arHeaders = [historySettingsHeader, timeSettingsHeader, quoteSettingsHeader, greetingSettingsHeader, launcherSettingsHeader, weatherSettingsHeader, notepadSettingsHeader];
 var arSettingsCheckboxes = [showRecentlyVisitedCheckbox, showCurrentTimeCheckbox, showQuoteCheckbox, showGreetingCheckbox, enableQuicklaunchCheckbox, showCurrentWeatherCheckbox, showNotePadCheckbox];
 
-window.onload, window.onfocus = function(){
-    for (var i = 0;i < arHeaders.length; i++) {
-        arHeaders[i].addEventListener('click',function(){
+window.onload, window.onfocus = function() {
+    for (var i = 0; i < arHeaders.length; i++) {
+        arHeaders[i].addEventListener('click', function() {
             changeSettingsVisibilityState(this.id);
         }, false)
     }
-    for (var i = 0;i<arSettingsCheckboxes.length;i++){
-        arSettingsCheckboxes[i].addEventListener('click', function(){
+    for (var i = 0; i < arSettingsCheckboxes.length; i++) {
+        arSettingsCheckboxes[i].addEventListener('click', function() {
             changeSettingsElementState(this.id);
         }, false)
     }
 }
 var timeout;
-toDoList.onkeypress = function(key){
+toDoList.onkeypress = function(key) {
     clearTimeout(timeout);
-    timeout = setTimeout(function(){console.log("SAVING SHIT");chrome.runtime.sendMessage({requesttype: "updateSettings", setting: "current-note", value: toDoList.value});}, 1000);
+    timeout = setTimeout(function() { console.log("SAVING SHIT");
+        chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "current-note", value: toDoList.value }); }, 1000);
 }
 
-function changeSettingsVisibilityState(id){
-    for (var i = 0;i<arHeaders.length;i++){
-        if (arHeaders[i].id === id){
-            console.log("here");
-            console.log(arHeaders[i].classList);
+function changeSettingsVisibilityState(id) {
+    for (var i = 0; i < arHeaders.length; i++) {
+        if (arHeaders[i].id === id) {
+            // console.log("here");
+            // console.log(arHeaders[i].classList);
             arHeaders[i].classList.add("selected");
             arBodies[i].style.display = "flex";
-        }else{
+        } else {
             arHeaders[i].classList.remove("selected");
             arBodies[i].style.display = "none";
         }
     }
-    console.log("ID IS: "+id);
+    // console.log("ID IS: " + id);
 }
 
-function changeSettingsElementState(id){
-    console.log("id: "+id);
-    console.log(id.replace("Checkbox", ''));
-    chrome.runtime.sendMessage({requesttype: "updateSettings", setting: id.replace("Checkbox", ''), value: document.getElementById(id).checked});
+function changeSettingsElementState(id) {
+    // console.log("id: " + id);
+    // console.log(id.replace("Checkbox", ''));
+    chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: id.replace("Checkbox", ''), value: document.getElementById(id).checked });
 }
-

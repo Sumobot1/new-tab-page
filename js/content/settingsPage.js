@@ -73,7 +73,6 @@ define(function() {
                         settingsIcon.style.display = "none";
                     }
                 }
-                // }
             }
         }
         if (!settings['showCurrentWeather']) {
