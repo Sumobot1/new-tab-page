@@ -23,8 +23,16 @@ define(function() {
             document.getElementById("mainQuote").style.display = "none";
             document.getElementById("showQuoteCheckbox").checked = false;
         } else {
-            document.getElementById("mainQuote").style.display = "flex";
+            document.getElementById("mainQuote").style.display = "block";
             document.getElementById("showQuoteCheckbox").checked = true;
+            document.getElementById("twitterEnabledSwitch").checked = settings['quote-from-twitter'];
+            document.getElementById("twitterEnabledSwitch").addEventListener('click', function(){
+                updateToggleState(this);
+            }, false);
+            document.getElementById("twitterHandleField").value = settings['twitter-handle'];
+            if (settings['quote-from-twitter']){
+                document.getElementById("quoteAuthor").innerHTML = "- @" + settings['twitter-handle'];
+            }
         }
         if (!settings['showGreeting']) {
             console.log("showGreeting IS FALSE");
@@ -94,6 +102,13 @@ define(function() {
             document.getElementById("showNotePadCheckbox").checked = true;
         }
     };
+
+    function updateToggleState(obj) {
+        console.log("UPDATING TOGGLE STATE: ");
+        console.log(obj);
+        console.log(obj.checked);
+        chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "quote-from-twitter", value: obj.checked });
+    }
 
     function addChild(type, item_id, parent, contents) {
         if (item_id && document.getElementById(item_id)) {

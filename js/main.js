@@ -50,14 +50,19 @@ define(function(require) {
             // alert(key);
             for (var i = 0; i < user_settings['launcher-items'].length; i++) {
                 if (key === user_settings['launcher-items'][i].key) {
-                    chrome.runtime.sendMessage({ requesttype: "openHotKeyTab", site: user_settings['launcher-items'][i].url });
+                    if (user_settings['launcher-items'][i].enabled) {
+                        chrome.runtime.sendMessage({ requesttype: "openHotKeyTab", site: user_settings['launcher-items'][i].url });
+                    }
                 }
             }
         };
     };
 });
 
-
+    function code(e) {
+        e = e || window.event;
+        return (e.keyCode || e.which);
+    }
 
 
 //Modal Stuff
@@ -126,6 +131,10 @@ var enableQuicklaunchCheckbox = document.getElementById("enableQuicklaunchCheckb
 var showCurrentWeatherCheckbox = document.getElementById("showCurrentWeatherCheckbox");
 var showNotePadCheckbox = document.getElementById("showNotePadCheckbox");
 
+var twitterEnabledSwitch = document.getElementById("twitterEnabledSwitch");
+
+var twitterHandleField = document.getElementById("twitterHandleField");
+
 var toDoList = document.getElementById("toDoList");
 
 var arBodies = [historySettingsBody, timeSettingsBody, quoteSettingsBody, greetingSettingsBody, launcherSettingsBody, weatherSettingsBody, notepadSettingsBody];
@@ -147,8 +156,16 @@ window.onload, window.onfocus = function() {
 var timeout;
 toDoList.onkeypress = function(key) {
     clearTimeout(timeout);
-    timeout = setTimeout(function() { console.log("SAVING SHIT");
-        chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "current-note", value: toDoList.value }); }, 1000);
+    timeout = setTimeout(function() {
+        console.log("SAVING SHIT");
+        chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "current-note", value: toDoList.value });
+    }, 1000);
+}
+
+twitterHandleField.onkeypress = function(key) {
+    if (code(key) === 13) {
+        chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "twitter-handle", value: twitterHandleField.value });
+    }
 }
 
 function changeSettingsVisibilityState(id) {

@@ -155,3 +155,17 @@ h2 {
     font-family: "Segoe UI";
     text-align: center;
 }
+
+.Emoji--forText {
+	height: 35px;
+}
+
+a {
+	text-decoration: none;
+    color: white;
+    text-shadow: none;
+}
+
+a:hover {
+	text-shadow: 0 0 0.2em rgba(253, 253, 253, 0.77), 0 0 0.3em rgba(253, 253, 253, 0.77);
+}

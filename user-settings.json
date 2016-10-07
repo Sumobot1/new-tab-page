@@ -4,6 +4,7 @@
 	"showCurrentTime": true,
 	"showQuote": true,
 	"quote-from-twitter": false,
+	"twitter-handle": "",
 	"showGreeting": true,
 	"enableQuicklaunch": false,
 	"enable-launcher": false,
