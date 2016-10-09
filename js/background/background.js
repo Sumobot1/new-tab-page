@@ -47,6 +47,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             openweather.getCurrentWeather();
         }
         background.sendMessage({ requesttype: "settings", settings: background.theUserSettings });
+        backgroundimage.showBackgroundImage();
     } else if (request.requesttype === "updateSettings") {
         if (request.setting === "launcher-items") {
             console.log("REQUEST");

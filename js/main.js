@@ -37,6 +37,9 @@ define(function(require) {
         } else if (request.requesttype === "settings") {
             user_settings = request.settings;
             settingsPage.applySettings(request.settings);
+        } else if (request.requesttype === "backgroundNum") {
+            document.getElementsByTagName("body")[0].style.background = "url('/img/background/bg (" + request.number.toString() + ").jpg') no-repeat center center fixed";
+            document.getElementsByTagName("body")[0].style.backgroundSize = "cover";
         }
     }
 
@@ -153,6 +156,7 @@ window.onload, window.onfocus = function() {
         }, false)
     }
 }
+
 var timeout;
 toDoList.onkeypress = function(key) {
     clearTimeout(timeout);
