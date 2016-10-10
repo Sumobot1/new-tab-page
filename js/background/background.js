@@ -79,13 +79,13 @@ background.sendMessage = function(message) {
     });
 };
 
-// background.forceUpdate = function() {
-//     console.log("background.forceUpdate");
-// };
+background.forceUpdate = function() {
+    console.log("background.forceUpdate");
+};
 
-// background.forceFullUpdate = function() {
-//     console.log("background.forceFullUpdate");
-// };
+background.forceFullUpdate = function() {
+    console.log("background.forceFullUpdate");
+};
 
 function loadJSON(json, callback) {
     var xobj = new XMLHttpRequest();

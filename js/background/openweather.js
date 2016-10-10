@@ -1,7 +1,7 @@
 var theJSON;
 var OPENWEATHERAPIID;
 var openweather = {
-    // 'theWeather': null
+    'theWeather': null
 };
 openweather.gotLocation = function(location){
 	if (location.msg === undefined){
@@ -42,14 +42,14 @@ openweather.showError = function(error){
 }
 
 openweather.getCurrentWeather = function() {
-//     if (openweather.theWeather) {
-//         openweather.sendResponse(openweather.theWeather);
-//     }else{
-//         openweather.getTheCurrentWeather();
-//     }
-// }
+    if (openweather.theWeather) {
+        openweather.sendResponse(openweather.theWeather);
+    }else{
+        openweather.getTheCurrentWeather();
+    }
+}
 
-// openweather.getTheCurrentWeather = function() {
+openweather.getTheCurrentWeather = function() {
     //theJSON = background.theJSON;
     OPENWEATHERAPIID = background.theJSON['OPENWEATHERAPIID'];
     this.getLocation();
@@ -66,7 +66,7 @@ openweather.httpGetAsync = function(theUrl, callback){
 }
 
 openweather.sendResponse = function(theWeather){
-    // this.theWeather = theWeather;
+    openweather.theWeather = theWeather;
     console.log("TIME IN HOURS: " + timeanddate.timeInHours);
     if (timeanddate.timeInHours < 6 || timeanddate.timeInHours > 18)
 	   background.sendMessage({requesttype: "updatedWeather", currentWeather: theWeather, dayOrNight: 'night'});
