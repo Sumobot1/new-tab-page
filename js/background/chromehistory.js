@@ -1,4 +1,5 @@
 var chromehistory = {
+	// 'recentlyVisited': null
 };
 
 chromehistory.hello = function(){
@@ -6,6 +7,14 @@ chromehistory.hello = function(){
 };
 
 chromehistory.getRecentlyVisited = function(num){
+// 	if (chromehistory.recentlyVisited) {
+// 		background.sendMessage({requesttype: "updatedHistory", history: chromehistory.recentlyVisited});
+// 	}else{
+// 		chromehistory.getRecentlyVisitedSites(5);
+// 	}
+// };
+
+// chromehistory.getRecentlyVisitedSites = function(num){
 	chrome.history.search({text: '', maxResults: num}, this.updateHistory.bind(this));
 };
 
@@ -15,6 +24,7 @@ chromehistory.updateHistory = function(results){
 			results[i].title = this.fixTitle(results[i]);
 		}
 	}
+	// this.recentlyVisited = results;
 	background.sendMessage({requesttype: "updatedHistory", history: results});
 };
 

@@ -1,5 +1,6 @@
 var timeanddate = {
-    'timeInHours':-1
+    'timeInHours':-1,
+    // 'time':null
 };
 
 timeanddate.updateTime = function () {
@@ -15,18 +16,26 @@ timeanddate.updateTime = function () {
             if (hours < 18){
                 partOfDay = "afternoon";
             }else{
-                partOfDay = "evening"
+                partOfDay = "evening";
             }if (hours >12){
                 hours -=12;
             }
         } else {
-            partOfDay = "morning"
+            partOfDay = "morning";
             if (hours === 0){
                 hours = 12;
             }
         }
-        var v = hours + ":" + minutes;  
+        var v = hours + ":" + minutes;
         console.log("Current Time: ", v);
+        // if (this.time != v){
+        //     this.time = v;
+        //     background.sendMessage({requesttype: "updatedTime", newTime: v, newPartOfDay: partOfDay, userName: background.theUserSettings['user-name']});
+        //     background.forceUpdate();
+        // } if(this.timeInHours != hours){
+        //     this.timeInHours = hours;
+        //     background.forceFullUpdate();
+        // }
         background.sendMessage({requesttype: "updatedTime", newTime: v, newPartOfDay: partOfDay, userName: background.theUserSettings['user-name']});
         var self = this;
         setTimeout(function(){console.log("Updating Time ");self.updateTime()},1000);

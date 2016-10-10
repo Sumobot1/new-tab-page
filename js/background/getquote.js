@@ -1,6 +1,7 @@
 //http://www.icndb.com/api/
 var quote = {
-
+    // 'quote': null,
+    // 'tweet': null
 }
 
 quote.gotChuck = function(req) {
@@ -11,11 +12,27 @@ quote.gotChuck = function(req) {
 
     //console.log(req.onload);
     console.log(req.value.joke);
+    // this.quote = req.value.joke;
     background.sendMessage({ requesttype: "gotQuote", quote: req.value.joke });
 }
-
 var req;
 quote.getQuote = function() {
+//     if (!background.theUserSettings['showQuote']){
+//         return;
+//     }
+//     if (background.theUserSettings['quote-from-twitter'] && background.theUserSettings['twitter-handle'] && quote.tweet) {
+//         background.sendMessage({requesttype: "gotQuote", quote: quote.tweet});
+//     } else if (background.theUserSettings['quote-from-twitter'] && background.theUserSettings['twitter-handle']){
+//         quote.getTheQuote();
+//     } else if (!background.theUserSettings['quote-from-twitter'] && quote.quote){
+//         background.sendMessage({requesttype: "gotQuote", quote: quote.quote});
+//     } else {
+//         quote.getTheQuote();
+//     }
+// }
+
+// var req;
+// quote.getTheQuote = function() {
     console.log(background.theUserSettings['quote-from-twitter']);
     if (background.theUserSettings['quote-from-twitter']) {
         //req = new XMLHttpRequest();
@@ -52,6 +69,7 @@ quote.gotTweets = function(req) {
             var twitter_handle = twitterStream[i].getElementsByClassName('content')[0].getElementsByClassName("username")[0].children;
             var handle = twitter_handle[0].innerHTML + twitter_handle[1].innerHTML;
             var tweet = twitterStream[i].getElementsByClassName("content")[0].getElementsByClassName("TweetTextSize")[0].innerHTML;
+            // this.tweet = tweet;
             background.sendMessage({requesttype: "gotQuote", quote: tweet, handle: handle});
             break;
         }
