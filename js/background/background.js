@@ -35,7 +35,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
     if (request.requesttype === "ready") {
         if (background.theUserSettings["showRecentlyVisited"]) {
-            chromehistory.getRecentlyVisited(5);
+            chromehistory.getRecentlyVisited();
         }
         if (background.theUserSettings["showCurrentTime"]) {
             timeanddate.updateTime();
@@ -81,10 +81,29 @@ background.sendMessage = function(message) {
 
 background.forceUpdate = function() {
     console.log("background.forceUpdate");
+    if (background.theUserSettings["showRecentlyVisited"]) {
+        chromehistory.getRecentlyVisitedSites(5);
+    }
+    if (background.theUserSettings["showQuote"]) {
+        quote.getTheQuote();
+    }
+    if (background.theUserSettings["showCurrentWeather"]) {
+        openweather.getTheCurrentWeather();
+    }
 };
 
 background.forceFullUpdate = function() {
     console.log("background.forceFullUpdate");
+    if (background.theUserSettings["showRecentlyVisited"]) {
+        chromehistory.getRecentlyVisitedSites(5);
+    }
+    if (background.theUserSettings["showQuote"]) {
+        quote.getTheQuote();
+    }
+    if (background.theUserSettings["showCurrentWeather"]) {
+        openweather.getTheCurrentWeather();
+    }
+    backgroundimage.showTheBackgroundImage();
 };
 
 function loadJSON(json, callback) {
