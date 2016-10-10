@@ -94,12 +94,12 @@ define(function() {
         if (!settings['showNotePad']) {
             document.getElementById("toDoList").style.display = "none";
             document.getElementById("showNotePadCheckbox").checked = false;
-            if (settings['current-note']) {
-                document.getElementById("toDoList").value = settings['current-note'];
-            }
         } else {
             document.getElementById("toDoList").style.display = "flex";
             document.getElementById("showNotePadCheckbox").checked = true;
+            if (settings['current-note']) {
+                document.getElementById("toDoList").value = settings['current-note'];
+            }
         }
     };
 

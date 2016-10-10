@@ -9,7 +9,9 @@ define(function () {
             console.log(currentWeather.main.temp);
             console.log(currentWeather.name);   //Kitchener
             if (dayOrNight === "day"){
+                console.log("day");
                 if (currentWeather.weather[0].main === "Clear"){
+                    console.log("clear");
                     sImg = '<img src="img/sun.png" class="weatherIcon"/>';
                 }else if (currentWeather.weather[0].main === "Clouds"){
                     sImg = '<img src="img/partly-cloudy.png" class="weatherIcon"/>'

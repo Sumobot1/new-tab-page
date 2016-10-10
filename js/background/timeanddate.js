@@ -1,13 +1,17 @@
 var timeanddate = {
     'timeInHours':-1,
     'time':null,
-    'partOfDay':null
+    'partOfDay':null,
+    'day':null
 };
 
 timeanddate.updateTheTime = function () {
         var currentTime = new Date();
-        var hours = currentTime.getHours();
+        var thehours = currentTime.getHours();
+        var hours = thehours;
         var minutes = currentTime.getMinutes();
+        var day = currentTime.getDay();
+
         if (minutes < 10){
             minutes = "0" + minutes;
         }
@@ -33,8 +37,9 @@ timeanddate.updateTheTime = function () {
             this.partOfDay = partOfDay;
             background.sendMessage({requesttype: "updatedTime", newTime: v, newPartOfDay: partOfDay, userName: background.theUserSettings['user-name']});
             background.forceUpdate();
-        } if(this.timeInHours != hours){
-            this.timeInHours = hours;
+        } if(this.timeInHours != thehours || this.day != day){
+            this.timeInHours = thehours;
+            this.day = day;
             background.forceFullUpdate();
         }
         var self = this;
