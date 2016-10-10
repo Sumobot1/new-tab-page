@@ -62,6 +62,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         console.log(background.theUserSettings);
         localStorage.setItem('user-settings', JSON.stringify(background.theUserSettings));
         background.sendMessage({ requesttype: "settings", settings: background.theUserSettings });
+        background.forceUpdate();
     } else if (request.requesttype === "openHotKeyTab"){
         console.log("OPEN HOTKEY TAB SAKJDFAKLDFJLDKJAFLAKJFLKAJDFLKDJAFF");
         chrome.tabs.create({'url': request.site, 'active': false});
@@ -89,6 +90,9 @@ background.forceUpdate = function() {
     }
     if (background.theUserSettings["showCurrentWeather"]) {
         openweather.getTheCurrentWeather();
+    }
+    if (background.theUserSettings["showCurrentTime"]) {
+        timeanddate.updateTime();
     }
 };
 

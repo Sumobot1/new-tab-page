@@ -79,37 +79,37 @@ body {
 .partOfDay{
 	display: flex;
 	font-size: 20px;
+	padding-bottom: 0;
 	padding-left: 40px;
-	padding-bottom: 0px;
 }
 
 #currentWeather{
-	position: absolute;
 	max-height:300px;
 	max-width:200px;
-	top:17px;
+	position: absolute;
 	right:20px;	
+	top:17px;
 }
 
 .weatherIcon{
-	max-width: 100%;
-	max-height: 6vh;
-	object-fit: contain;
 	display: block;
     margin: auto;
+	max-height: 6vh;
+	max-width: 100%;
+	object-fit: contain;
 }
 
 .weatherText{
 	color: #fff;
-	text-transform: lowercase;
 	text-align: center;
+	text-transform: lowercase;
 }
 
 .socialIcon{
 	color: white;
-    opacity: 0.7;
-    margin-right: 16px;
     margin-left: 16px;
+    margin-right: 16px;
+    opacity: 0.7;
 }
 
 .socialIcon:hover{
@@ -122,10 +122,10 @@ body {
 }
 
 .settingsGear{
-	color: white;
-    position: absolute;
     bottom: 17px;
+	color: white;
     left: 20px;
+    position: absolute;
 }
 
 .settingsGear:hover{
@@ -134,23 +134,22 @@ body {
 
 h3 {
 	-webkit-margin-before: 1px;
-    -webkit-margin-after: 5px;
 }
 
 h2 {
-	-webkit-margin-before: 10px;
     -webkit-margin-after: 1px;
+	-webkit-margin-before: 10px;
 }
 
 .name-input-text{
 	background: none;
-    outline: none;
     border: none;
     border-bottom: 1px solid white;
-    height: 62px;
-    font-size: 60px;
     color: white;
-    font-family: "Segoe UI";
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    font-size: 60px;
+    height: 62px;
+    outline: none;
     text-align: center;
 }
 
@@ -159,8 +158,8 @@ h2 {
 }
 
 a {
-	text-decoration: none;
     color: white;
+	text-decoration: none;
     text-shadow: none;
 }
 
