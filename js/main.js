@@ -44,12 +44,18 @@ define(function(require) {
     }
 
     function code(e) {
+        console.log("e: ");
+        console.log(e);
         e = e || window.event;
         return (e.keyCode || e.which);
     }
-    window.onload = function() {
-        document.onkeypress = function(e) {
+    // window.onload = function() {
+        // console.log("window.onload =================================");
+        window.onkeypress = function(e) {
+            console.log("DKDFKJAKLFJADLS;JFASJLFAS;LFKJ ==================");
             var key = code(e);
+            console.log("KEY: ");
+            console.log(key);
             // alert(key);
             for (var i = 0; i < user_settings['launcher-items'].length; i++) {
                 if (key === user_settings['launcher-items'][i].key) {
@@ -59,7 +65,7 @@ define(function(require) {
                 }
             }
         };
-    };
+    // };
 });
 
     function code(e) {
