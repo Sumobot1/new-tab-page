@@ -1,7 +1,5 @@
 define(function(require) {
     // Load any app-specific modules
-    // with a relative require call,
-    // like:
     var messages = require('./content/messages');
     var mainTime = require('./content/mainTime');
     var currentWeather = require('./content/currentWeather');
@@ -14,7 +12,6 @@ define(function(require) {
     // full IDs, like:
     var hello = messages.getHello();
     var user_settings;
-    //console.log(hello);
     messages.printstuff(hello);
     messages.printstuff(messages.getHello());
     chrome.runtime.sendMessage({ requesttype: "ready" }, gotResponse);
@@ -49,23 +46,19 @@ define(function(require) {
         e = e || window.event;
         return (e.keyCode || e.which);
     }
-    // window.onload = function() {
-        // console.log("window.onload =================================");
-        window.onkeypress = function(e) {
-            console.log("DKDFKJAKLFJADLS;JFASJLFAS;LFKJ ==================");
-            var key = code(e);
-            console.log("KEY: ");
-            console.log(key);
-            // alert(key);
-            for (var i = 0; i < user_settings['launcher-items'].length; i++) {
-                if (key === user_settings['launcher-items'][i].key) {
-                    if (user_settings['launcher-items'][i].enabled && user_settings['enableQuicklaunch']) {
-                        chrome.runtime.sendMessage({ requesttype: "openHotKeyTab", site: user_settings['launcher-items'][i].url });
-                    }
+    window.onkeypress = function(e) {
+        console.log("DKDFKJAKLFJADLS;JFASJLFAS;LFKJ ==================");
+        var key = code(e);
+        console.log("KEY: ");
+        console.log(key);
+        for (var i = 0; i < user_settings['launcher-items'].length; i++) {
+            if (key === user_settings['launcher-items'][i].key) {
+                if (user_settings['launcher-items'][i].enabled && user_settings['enableQuicklaunch']) {
+                    chrome.runtime.sendMessage({ requesttype: "openHotKeyTab", site: user_settings['launcher-items'][i].url });
                 }
             }
-        };
-    // };
+        }
+    };
 });
 
     function code(e) {
@@ -89,12 +82,12 @@ var settingsNameField = document.getElementById("settingsNameField");
 // When the user clicks the button, open the modal
 btn.onclick = function() {
     modal.style.display = "block";
-}
+};
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
-}
+};
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -103,19 +96,19 @@ window.onclick = function(event) {
     }
     console.log("saving the thing");
     chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "current-note", value: toDoList.value });
-}
+};
 
 userNameField.onkeypress = function(key) {
     if (code(key) === 13) {
         chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "user-name", value: userNameField.value });
     }
-}
+};
 
 settingsNameField.onkeypress = function(key) {
     if (code(key) === 13) {
         chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "user-name", value: settingsNameField.value });
     }
-}
+};
 
 var historySettingsHeader = document.getElementById("historySettingsHeader");
 var timeSettingsHeader = document.getElementById("timeSettingsHeader");
@@ -161,7 +154,7 @@ window.onload, window.onfocus = function() {
             changeSettingsElementState(this.id);
         }, false)
     }
-}
+};
 
 var timeout;
 toDoList.onkeypress = function(key) {
@@ -170,13 +163,13 @@ toDoList.onkeypress = function(key) {
         console.log("SAVING SHIT");
         chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "current-note", value: toDoList.value });
     }, 1000);
-}
+};
 
 twitterHandleField.onkeypress = function(key) {
     if (code(key) === 13) {
         chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "twitter-handle", value: twitterHandleField.value });
     }
-}
+};
 
 function changeSettingsVisibilityState(id) {
     for (var i = 0; i < arHeaders.length; i++) {
@@ -190,11 +183,8 @@ function changeSettingsVisibilityState(id) {
             arBodies[i].style.display = "none";
         }
     }
-    // console.log("ID IS: " + id);
 }
 
 function changeSettingsElementState(id) {
-    // console.log("id: " + id);
-    // console.log(id.replace("Checkbox", ''));
     chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: id.replace("Checkbox", ''), value: document.getElementById(id).checked });
 }

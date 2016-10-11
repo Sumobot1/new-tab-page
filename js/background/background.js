@@ -35,21 +35,22 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
     console.log(request);
     if (request.requesttype === "ready") {
-        if (background.theUserSettings["showRecentlyVisited"]) {
-            chromehistory.getRecentlyVisited();
-        }
-        if (background.theUserSettings["showCurrentTime"]) {
-            timeanddate.updateTime();
-        }
-        if (background.theUserSettings["showQuote"]) {
-            console.log("showquote called here");
-            quote.getQuote();
-        }
-        if (background.theUserSettings["showCurrentWeather"]) {
-            openweather.getCurrentWeather();
-        }
         background.sendMessage({ requesttype: "settings", settings: background.theUserSettings });
+        // if (background.theUserSettings["showRecentlyVisited"]) {
+        //     chromehistory.getRecentlyVisited();
+        // }
+        // if (background.theUserSettings["showCurrentTime"]) {
+        //     timeanddate.updateTime();
+        // }
+        // if (background.theUserSettings["showQuote"]) {
+        //     console.log("showquote called here");
+        //     quote.getQuote();
+        // }
+        // if (background.theUserSettings["showCurrentWeather"]) {
+        //     openweather.getCurrentWeather();
+        // }
         backgroundimage.showBackgroundImage();
+        background.forceUpdate();
     } else if (request.requesttype === "updateSettings") {
         if (request.setting === "launcher-items") {
             console.log("REQUEST");
@@ -91,18 +92,18 @@ background.sendMessage = function(message) {
 
 background.forceUpdate = function() {
     console.log("background.forceUpdate");
+    if (background.theUserSettings["showCurrentTime"]) {
+        timeanddate.updateTime();
+    }
     if (background.theUserSettings["showRecentlyVisited"]) {
         chromehistory.getRecentlyVisitedSites(5);
     }
-    if (background.theUserSettings["showQuote"]){// && background.theUserSettings['quote-from-twitter']) {
+    if (background.theUserSettings["showQuote"] && !background.theUserSettings["showCurrentTime"]){// && background.theUserSettings['quote-from-twitter']) {
         console.log("if is true");
         quote.getTheQuote();
     }
     if (background.theUserSettings["showCurrentWeather"]) {
         openweather.getTheCurrentWeather();
-    }
-    if (background.theUserSettings["showCurrentTime"]) {
-        timeanddate.updateTime();
     }
 };
 
@@ -116,6 +117,9 @@ background.forceFullUpdate = function() {
     }
     if (background.theUserSettings["showCurrentWeather"]) {
         openweather.getTheCurrentWeather();
+    }    
+    if (background.theUserSettings["showCurrentTime"]) {
+        timeanddate.updateTime();
     }
     backgroundimage.showTheBackgroundImage();
 };

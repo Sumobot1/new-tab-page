@@ -31,16 +31,19 @@ timeanddate.updateTheTime = function () {
             }
         }
         var v = hours + ":" + minutes;
-        if (this.time != v){
+        if(this.timeInHours != thehours || this.day != day){
+            this.timeInHours = thehours;
+            this.day = day;
+            this.time = v;
+            this.partOfDay = partOfDay;
+            console.log("IN CURRENT TIME... ");
+            background.forceFullUpdate();
+        }else if (this.time != v){
             console.log("Current Time: ", v);
             this.time = v;
             this.partOfDay = partOfDay;
             background.sendMessage({requesttype: "updatedTime", newTime: v, newPartOfDay: partOfDay, userName: background.theUserSettings['user-name']});
             background.forceUpdate();
-        } if(this.timeInHours != thehours || this.day != day){
-            this.timeInHours = thehours;
-            this.day = day;
-            background.forceFullUpdate();
         }
         var self = this;
         setTimeout(function(){console.log("Updating Time ");self.updateTheTime()},1000);
