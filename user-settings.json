@@ -25,5 +25,6 @@
 	],
 	"showCurrentWeather": true,
 	"showNotePad": false,
-	"current-note": ""
+	"current-note": "",
+	"number-of-backgrounds":12
 }
