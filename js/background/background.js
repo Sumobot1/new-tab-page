@@ -98,7 +98,7 @@ background.forceUpdate = function() {
     if (background.theUserSettings["showRecentlyVisited"]) {
         chromehistory.getRecentlyVisitedSites(5);
     }
-    if (background.theUserSettings["showQuote"] && !background.theUserSettings["showCurrentTime"]){// && background.theUserSettings['quote-from-twitter']) {
+    if (background.theUserSettings["showQuote"]){// && !background.theUserSettings["showCurrentTime"]){// && background.theUserSettings['quote-from-twitter']) {
         console.log("if is true");
         quote.getTheQuote();
     }
@@ -112,7 +112,7 @@ background.forceFullUpdate = function() {
     if (background.theUserSettings["showRecentlyVisited"]) {
         chromehistory.getRecentlyVisitedSites(5);
     }
-    if (background.theUserSettings["showQuote"]) {
+    if (background.theUserSettings["showQuote"] && background.theUserSettings['quote-from-twitter']) {//) {
         quote.getTheQuote();
     }
     if (background.theUserSettings["showCurrentWeather"]) {
