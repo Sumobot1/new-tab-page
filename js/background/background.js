@@ -31,7 +31,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.requesttype === "ready") {
         background.sendMessage({ requesttype: "settings", settings: background.theUserSettings });
         backgroundimage.showBackgroundImage();
-        background.forceUpdate();
+        background.initialUpdate();
     } else if (request.requesttype === "updateSettings") {
         if (request.setting === "launcher-items") {
             background.theUserSettings[request.setting][parseInt(request.index)][request.attribute] = request.value;
@@ -61,6 +61,21 @@ background.sendMessage = function(message) {
         }
     });
 };
+
+background.initialUpdate = function(){
+    if (background.theUserSettings["showCurrentTime"]) {
+        timeanddate.updateTime();
+    }
+    if (background.theUserSettings["showRecentlyVisited"]) {
+        chromehistory.getRecentlyVisited();
+    }
+    if (background.theUserSettings["showQuote"]){
+        quote.getQuote();
+    }
+    if (background.theUserSettings["showCurrentWeather"]) {
+        openweather.getCurrentWeather();
+    }
+}
 
 background.forceUpdate = function() {
     if (background.theUserSettings["showCurrentTime"]) {

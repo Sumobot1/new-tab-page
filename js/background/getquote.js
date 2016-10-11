@@ -11,6 +11,7 @@ quote.gotChuck = function(req) {
 };
 
 quote.getQuote = function() {
+    console.log("GETQUOTE");
     if (!background.theUserSettings['showQuote']){
         return;
     }
@@ -27,6 +28,7 @@ quote.getQuote = function() {
 
 var req;
 quote.getTheQuote = function() {
+    console.log("getTheQuote");
     if (background.theUserSettings['quote-from-twitter']) {
         if (background.theUserSettings['twitter-handle']) {
             var url = 'https://crossorigin.me/http://twitter.com/' + background.theUserSettings['twitter-handle'] + '.json';
