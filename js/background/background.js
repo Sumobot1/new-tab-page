@@ -33,6 +33,7 @@ function gotUserSettings(response) {
 //Chrome message pipe.  Receives messages from content script
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
+    console.log(request);
     if (request.requesttype === "ready") {
         if (background.theUserSettings["showRecentlyVisited"]) {
             chromehistory.getRecentlyVisited();
@@ -41,6 +42,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             timeanddate.updateTime();
         }
         if (background.theUserSettings["showQuote"]) {
+            console.log("showquote called here");
             quote.getQuote();
         }
         if (background.theUserSettings["showCurrentWeather"]) {
@@ -55,14 +57,21 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             console.log(background.theUserSettings[request.setting][request.index]);
             console.log(background.theUserSettings[request.setting][request.index][request.attribute]);
             background.theUserSettings[request.setting][parseInt(request.index)][request.attribute] = request.value;
-        } else {
+        } else if (request.setting === "quote-from-twitter" || request.setting === "twitter-handle"){
+            console.log("this is true dkjfkdjfd");
+            background.theUserSettings[request.setting] = request.value;
+            quote.getQuote();
+        } else if (request.setting === "user-name"){
+            background.theUserSettings[request.setting] = request.value;
+            timeanddate.updateTime();
+        }else {
             console.log("SETTING USER SETTINGS NOW");
             background.theUserSettings[request.setting] = request.value;
         }
         console.log(background.theUserSettings);
         localStorage.setItem('user-settings', JSON.stringify(background.theUserSettings));
         background.sendMessage({ requesttype: "settings", settings: background.theUserSettings });
-        background.forceUpdate();
+        // background.forceUpdate();
     } else if (request.requesttype === "openHotKeyTab"){
         console.log("OPEN HOTKEY TAB SAKJDFAKLDFJLDKJAFLAKJFLKAJDFLKDJAFF");
         chrome.tabs.create({'url': request.site, 'active': false});
@@ -85,7 +94,8 @@ background.forceUpdate = function() {
     if (background.theUserSettings["showRecentlyVisited"]) {
         chromehistory.getRecentlyVisitedSites(5);
     }
-    if (background.theUserSettings["showQuote"]) {
+    if (background.theUserSettings["showQuote"]){// && background.theUserSettings['quote-from-twitter']) {
+        console.log("if is true");
         quote.getTheQuote();
     }
     if (background.theUserSettings["showCurrentWeather"]) {

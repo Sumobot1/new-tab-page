@@ -1,4 +1,5 @@
 define(function() {
+    var hasBeenAdded = false;
     function applySettings(settings) {
         console.log("GOTTA APPLY DEM SETTINGS");
         console.log(settings);
@@ -22,16 +23,22 @@ define(function() {
             console.log("showQuote IS FALSE");
             document.getElementById("mainQuote").style.display = "none";
             document.getElementById("showQuoteCheckbox").checked = false;
+            document.getElementById("quoteAuthor").innerHTML = "";
         } else {
             document.getElementById("mainQuote").style.display = "block";
             document.getElementById("showQuoteCheckbox").checked = true;
             document.getElementById("twitterEnabledSwitch").checked = settings['quote-from-twitter'];
-            document.getElementById("twitterEnabledSwitch").addEventListener('click', function(){
-                updateToggleState(this);
-            }, false);
+            if (!hasBeenAdded){
+                document.getElementById("twitterEnabledSwitch").addEventListener('click', function(){
+                    updateToggleState(this);
+                }, false);
+                hasBeenAdded = true;                
+            }
             document.getElementById("twitterHandleField").value = settings['twitter-handle'];
             if (settings['quote-from-twitter']){
                 document.getElementById("quoteAuthor").innerHTML = "- @" + settings['twitter-handle'];
+            }else{
+                document.getElementById("quoteAuthor").innerHTML = "";
             }
         }
         if (!settings['showGreeting']) {

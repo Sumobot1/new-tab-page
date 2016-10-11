@@ -59,7 +59,7 @@ define(function(require) {
             // alert(key);
             for (var i = 0; i < user_settings['launcher-items'].length; i++) {
                 if (key === user_settings['launcher-items'][i].key) {
-                    if (user_settings['launcher-items'][i].enabled) {
+                    if (user_settings['launcher-items'][i].enabled && user_settings['enableQuicklaunch']) {
                         chrome.runtime.sendMessage({ requesttype: "openHotKeyTab", site: user_settings['launcher-items'][i].url });
                     }
                 }
