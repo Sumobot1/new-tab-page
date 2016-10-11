@@ -12,7 +12,7 @@ chromehistory.getRecentlyVisited = function(){
 	}else{
 		chromehistory.getRecentlyVisitedSites(5);
 	}
-}
+};
 
 chromehistory.getRecentlyVisitedSites = function(num){
 	chrome.history.search({text: '', maxResults: num}, this.updateHistory.bind(this));

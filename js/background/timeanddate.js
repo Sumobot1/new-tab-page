@@ -36,10 +36,8 @@ timeanddate.updateTheTime = function () {
             this.day = day;
             this.time = v;
             this.partOfDay = partOfDay;
-            console.log("IN CURRENT TIME... ");
             background.forceFullUpdate();
         }else if (this.time != v){
-            console.log("Current Time: ", v);
             this.time = v;
             this.partOfDay = partOfDay;
             background.sendMessage({requesttype: "updatedTime", newTime: v, newPartOfDay: partOfDay, userName: background.theUserSettings['user-name']});

@@ -10,7 +10,7 @@ openweather.gotLocation = function(location){
     else{
     	background.sendMessage({requesttype: "cantUpdateWeather", errorMessage: location.msg})
     }
-}
+};
 
 openweather.getLocation = function(){
     if (navigator.geolocation) {
@@ -18,11 +18,11 @@ openweather.getLocation = function(){
     } else {
         this.gotLocation({msg: "Geolocation is not supported by this browser."});
     }
-}
+};
 
 openweather.showPosition = function(position){
 	this.gotLocation({latitude: position.coords.latitude, longitude: position.coords.longitude});
-}
+};
 
 openweather.showError = function(error){
 	switch (error.code) {
@@ -39,7 +39,7 @@ openweather.showError = function(error){
 	        this.gotLocation({ msg: "An unknown error occurred." });																//UNKNOWN ERROR OCCURRED
 	        break;
 	}
-}
+};
 
 openweather.getCurrentWeather = function() {
     if (openweather.theWeather) {
@@ -47,13 +47,13 @@ openweather.getCurrentWeather = function() {
     }else{
         openweather.getTheCurrentWeather();
     }
-}
+};
 
 openweather.getTheCurrentWeather = function() {
     //theJSON = background.theJSON;
     OPENWEATHERAPIID = background.theJSON['OPENWEATHERAPIID'];
     this.getLocation();
-}
+};
 
 openweather.httpGetAsync = function(theUrl, callback){
     var xmlHttp = new XMLHttpRequest();
@@ -63,13 +63,12 @@ openweather.httpGetAsync = function(theUrl, callback){
     }
     xmlHttp.open("GET", theUrl, true); // true for asynchronous 
     xmlHttp.send(null);
-}
+};
 
 openweather.sendResponse = function(theWeather){
     openweather.theWeather = theWeather;
-    console.log("TIME IN HOURS: " + timeanddate.timeInHours);
     if (timeanddate.timeInHours < 6 || timeanddate.timeInHours > 18)
 	   background.sendMessage({requesttype: "updatedWeather", currentWeather: theWeather, dayOrNight: 'night'});
     else
         background.sendMessage({requesttype: "updatedWeather", currentWeather: theWeather, dayOrNight: 'day'});
-}
+};

@@ -1,10 +1,8 @@
 define(function() {
     var hasBeenAdded = false;
     function applySettings(settings) {
-        console.log("GOTTA APPLY DEM SETTINGS");
         console.log(settings);
         if (!settings['showRecentlyVisited']) {
-            console.log("showRecentlyVisited IS FALSE");
             document.getElementById("recentlyVisited").style.display = "none";
             document.getElementById("showRecentlyVisitedCheckbox").checked = false;
         } else {
@@ -12,7 +10,6 @@ define(function() {
             document.getElementById("showRecentlyVisitedCheckbox").checked = true;
         }
         if (!settings['showCurrentTime']) {
-            console.log("showCurrentTime IS FALSE");
             document.getElementById("mainTime").style.display = "none";
             document.getElementById("showCurrentTimeCheckbox").checked = false;
         } else {
@@ -20,7 +17,6 @@ define(function() {
             document.getElementById("showCurrentTimeCheckbox").checked = true;
         }
         if (!settings['showQuote']) {
-            console.log("showQuote IS FALSE");
             document.getElementById("mainQuote").style.display = "none";
             document.getElementById("showQuoteCheckbox").checked = false;
             document.getElementById("quoteAuthor").innerHTML = "";
@@ -42,7 +38,6 @@ define(function() {
             }
         }
         if (!settings['showGreeting']) {
-            console.log("showGreeting IS FALSE");
             document.getElementById("mainGreetingWrapper").style.display = "none";
             document.getElementById("showGreetingCheckbox").checked = false;
         } else {
@@ -51,7 +46,6 @@ define(function() {
             document.getElementById("showGreetingCheckbox").checked = true;
         }
         if (!settings['enableQuicklaunch']) {
-            console.log("enableQuicklaunch IS FALSE");
             document.getElementById("hotKeys").style.display = "none";
             document.getElementById("enableQuicklaunchCheckbox").checked = false;
             document.getElementById("quickLaunchSettingsTable").style.display = "none";
@@ -60,10 +54,7 @@ define(function() {
             document.getElementById("hotKeys").style.display = "block";
             document.getElementById("quickLaunchSettingsTable").style.display = "table";
             document.getElementById("enableQuicklaunchCheckbox").checked = true;
-            console.log("SETTINGS AT LAUNCHER ITEMS: ");
-            console.log(settings['launcher-items']);
             for (var i = 0; i < settings['launcher-items'].length; i++) {
-                console.log(settings['launcher-items'][i]);
                 if (!document.getElementById(settings['launcher-items'][i].website)) {
                     var settingsItem = addChild("tr", settings['launcher-items'][i].website, document.getElementById("quickLaunchSettingsBody"), null);
                     addChild("td", settings['launcher-items'][i].website + "-name", settingsItem, settings['launcher-items'][i].website);
@@ -91,7 +82,6 @@ define(function() {
             }
         }
         if (!settings['showCurrentWeather']) {
-            console.log("showCurrentWeather IS FALSE");
             document.getElementById("currentWeather").style.display = "none";
             document.getElementById("showCurrentWeatherCheckbox").checked = false;
         } else {
@@ -111,9 +101,6 @@ define(function() {
     };
 
     function updateToggleState(obj) {
-        console.log("UPDATING TOGGLE STATE: ");
-        console.log(obj);
-        console.log(obj.checked);
         chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "quote-from-twitter", value: obj.checked });
     }
 
@@ -147,18 +134,14 @@ define(function() {
     }
 
     function changeSettingsEnabledState(id) {
-        console.log("CLICKED: " + id);
         arr = id.split("-");
         index = arr[arr.length - 1];
-        console.log(index);
         chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "launcher-items", index: index, attribute: "enabled", value: document.getElementById(id).checked });
     }
 
     function changeSettingsVisibleState(id) {
-        console.log("CLICKED: " + id);
         arr = id.split("-");
         index = arr[arr.length - 1];
-        console.log(index);
         chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "launcher-items", index: index, attribute: "visible", value: document.getElementById(id).checked });
     }
 

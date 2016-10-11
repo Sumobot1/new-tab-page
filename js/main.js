@@ -18,8 +18,6 @@ define(function(require) {
     chrome.runtime.onMessage.addListener(gotResponse);
 
     function gotResponse(request, sender, sendResponse) {
-        console.log("Response to Request", request);
-
         if (request === undefined) {
             return;
         }
@@ -41,16 +39,11 @@ define(function(require) {
     }
 
     function code(e) {
-        console.log("e: ");
-        console.log(e);
         e = e || window.event;
         return (e.keyCode || e.which);
     }
     window.onkeypress = function(e) {
-        console.log("DKDFKJAKLFJADLS;JFASJLFAS;LFKJ ==================");
         var key = code(e);
-        console.log("KEY: ");
-        console.log(key);
         for (var i = 0; i < user_settings['launcher-items'].length; i++) {
             if (key === user_settings['launcher-items'][i].key) {
                 if (user_settings['launcher-items'][i].enabled && user_settings['enableQuicklaunch']) {
@@ -160,7 +153,6 @@ var timeout;
 toDoList.onkeypress = function(key) {
     clearTimeout(timeout);
     timeout = setTimeout(function() {
-        console.log("SAVING SHIT");
         chrome.runtime.sendMessage({ requesttype: "updateSettings", setting: "current-note", value: toDoList.value });
     }, 1000);
 };
