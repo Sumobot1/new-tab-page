@@ -43,7 +43,12 @@ define(function(require) {
         return (e.keyCode || e.which);
     }
     window.onkeypress = function(e) {
+        console.log("KEY PRESSED");
+        console.log(e.target.id);
         var key = code(e);
+        if (e.target.id === "toDoList" || e.target.id === "settingsNameField" || e.target.id === "userNameField" || e.target.id === "twitterHandleField"){
+            return;
+        }
         for (var i = 0; i < user_settings['launcher-items'].length; i++) {
             if (key === user_settings['launcher-items'][i].key) {
                 if (user_settings['launcher-items'][i].enabled && user_settings['enableQuicklaunch']) {
