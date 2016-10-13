@@ -16,14 +16,14 @@ define(function () {
                 }else if (currentWeather.weather[0].main === "Clouds"){
                     sImg = '<img src="img/partly-cloudy-night.png" class="weatherIcon"/>';
                 }else if (currentWeather.weather[0].main === "Mist"){
-                    sImg = '<img src="img/fog-night.png" class="weatherIcon"/>'
+                    sImg = '<img src="img/fog-night.png" class="weatherIcon"/>';
                 }
             }
             if (currentWeather.weather[0].main === "Rain"){
-                sImg = '<img src="img/rain.png" class="weatherIcon"/>'
+                sImg = '<img src="img/rain.png" class="weatherIcon"/>';
             }
             document.getElementById("currentWeather").innerHTML = sImg+'<div class="weatherText">'+currentWeather.weather[0].description+'</div>'+'<div class="weatherText">'+currentWeather.name+'</div>'+'<div class="weatherText">'+String(parseInt(currentWeather.main.temp-273))+'&deg;'+'</div>';
-        };
+        }
      return {
      	updateWeather: updateWeather
     };

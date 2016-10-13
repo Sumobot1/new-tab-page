@@ -9,20 +9,26 @@
             "js/background/background.js", "js/background/chromehistory.js", "js/background/timeanddate.js", "js/background/openweather.js", "js/background/getquote.js", "js/background/backgroundimage.js"
   ]},
 
+  "icons": { 
+  	"16": "icon16.png",
+    "48": "icon.png",
+    "128": "icon128.png" 
+  },
+
   "browser_action": {
     "default_icon": "icon.png"
 
   },
   "permissions": [
     "activeTab",
-      "tabs",
-  "unlimitedStorage",
-  "background",
-  "history",
-  "storage",
-  "topSites",
-  "geolocation",
-  "http://search.twitter.com/*"
+    "tabs",
+  	"unlimitedStorage",
+  	"background",
+  	"history",
+  	"storage",
+  	"topSites",
+  	"geolocation",
+  	"http://search.twitter.com/*"
   ],
     "chrome_url_overrides" : {
     "newtab": "newtab.html"
