@@ -1,6 +1,7 @@
 define(function () {   
         var sImg;
         function updateWeather(currentWeather, dayOrNight) {
+            console.log(currentWeather);
             currentWeather = JSON.parse(currentWeather);
             if (dayOrNight === "day"){
                 if (currentWeather.weather[0].main === "Clear"){
@@ -21,6 +22,8 @@ define(function () {
             }
             if (currentWeather.weather[0].main === "Rain"){
                 sImg = '<img src="img/rain.png" class="weatherIcon"/>';
+            } else if (currentWeather.weather[0].main === "Snow") {
+                sImg = '<img src="img/snow.png" class="weatherIcon"/>';
             }
             document.getElementById("currentWeather").innerHTML = sImg+'<div class="weatherText">'+currentWeather.weather[0].description+'</div>'+'<div class="weatherText">'+currentWeather.name+'</div>'+'<div class="weatherText">'+String(parseInt(currentWeather.main.temp-273))+'&deg;'+'</div>';
         }
